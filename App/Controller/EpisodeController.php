@@ -110,7 +110,6 @@ class EpisodeController extends \Core\Controller
 	/**
 	 * Suppression d'un episode
 	 * Mode administrateur uniquement
-	 * @todo   Effacer les commentaires associés
 	 * @param  integer $id Identifiant de l'episode
 	 * @return [type]      [description]
 	 */
