@@ -57,8 +57,6 @@ class CommentController extends \Core\Controller
 			$message = $ex->getMessage();
 		}
 		echo json_encode(['message' => $message]);
-		exit;
-
 	}
 
 	/**
@@ -105,8 +103,6 @@ class CommentController extends \Core\Controller
 			$message = $ex->getMessage();
 		}
 		echo json_encode(['message' => $message]);
-		exit;
-
 	}
 
 	/**
@@ -129,7 +125,6 @@ class CommentController extends \Core\Controller
 			$message = $ex->getMessage();
 		}
 		echo json_encode(['message' => $message]);
-		exit;
 	}
 
 	/**
@@ -163,7 +158,6 @@ class CommentController extends \Core\Controller
 			$message = $ex->getMessage();
 		}
 		echo json_encode(['message' => $message]);
-		exit;
 	}
 
 

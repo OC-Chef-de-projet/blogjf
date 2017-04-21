@@ -203,9 +203,9 @@ class EpisodeController extends \Core\Controller
 		// En AJAX on retourne un JSON
 		if(isset($_POST['ajax']) && $_POST['ajax']){
 			echo json_encode($response);
-			exit;
+		} else {
+			return($response);
 		}
-		return($response);
 	}
 
 	public function getEpisodeTitle($episode){
