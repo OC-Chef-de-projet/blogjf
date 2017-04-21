@@ -38,3 +38,4 @@ class AdminController extends \Core\Controller
 		$this->display('index');
 	}
 }
+
