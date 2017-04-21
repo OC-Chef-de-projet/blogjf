@@ -39,7 +39,6 @@ class Form extends View
 		$required = '';
 
 		if(isset($field['required']) && !empty($field['required'])){
-			//$required = 'required="'.$field['required'].'"';
 			$required = 'required=""';
 		}
 
@@ -72,7 +71,6 @@ class Form extends View
 		if(isset($field['class'])){
 			$class = 'class="'.$field['class'].'"';
 		}
-		$html = '';
 		echo '<input type="submit" value="'.$field['value'].'" '.$class.'/>'."\n";
 		echo '</form>'."\n";
 	}

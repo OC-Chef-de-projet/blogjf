@@ -1,6 +1,4 @@
 <?php
-//namespace App;
-
 if (!defined('DS')) {
         define('DS', DIRECTORY_SEPARATOR);
 }
@@ -19,11 +17,6 @@ if (!defined('WEBROOT_DIR')) {
 if (!defined('WWW_ROOT')) {
         define('WWW_ROOT', dirname(__FILE__) . DS);
 }
-
-
-// Autoloader maison
-// include_once ROOT.'/Core/Autoloader.php';
-// \Core\Autoloader::register();
 
 
 // Autoloader Composer

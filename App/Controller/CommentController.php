@@ -82,7 +82,7 @@ class CommentController extends \Core\Controller
 				];
 				$comment = $this->Comment->find($options);
 				if(!$comment){
-					throw new Exception("Impossible de trouver le commentaire");
+					throw new Exception("Impossible de trouver le commentaire",9000);
 				}
 				$parent_id = $comment->parent_id;
 				$depth = $comment->depth;
@@ -156,7 +156,7 @@ class CommentController extends \Core\Controller
 
 					}
 				}
-				$comment = $this->Comment->save($data);
+				$this->Comment->save($data);
 				$message = 'Merci pour votre commentaire';
 			}
 		}

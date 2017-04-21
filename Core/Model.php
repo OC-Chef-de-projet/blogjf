@@ -1,7 +1,5 @@
 <?php namespace Core;
 
-//require_once('App/config/database.php');
-
 class Model extends \stdClass
 {
 
@@ -207,7 +205,6 @@ class Model extends \stdClass
 
 			$field = array();
 			foreach($data as $key => $content){
-				//$field[$key] = $this->db->quote($content);
 				$field[$key] = $content;
 			}
 			// Vérifie si il y a un champ modified qui existe et met la date/heure courante

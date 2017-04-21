@@ -25,9 +25,6 @@ class PageController extends \Core\Controller
 	 * @return Object      Page
 	 */
 	public function getPage($id = 0){
-
-		$page = array();
-
 		// Récupération de la page
 		$options = [
 			'type' => 'one',

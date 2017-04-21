@@ -114,7 +114,7 @@ class EpisodeController extends \Core\Controller
 	 * @return [type]      [description]
 	 */
 	public function delete($id = 0){
-		$episode = $this->Episode->delete($id);
+		$this->Episode->delete($id);
 		$this->redirect('Episode','index',array());
 	}
 
