@@ -81,7 +81,6 @@ class Model extends \stdClass
 			if(empty($w))$w = '1=1';
 
 
-			$fields = '';
 			$table = strtolower($model);
 			$sql = "SELECT count(*) as count FROM `{$table}` WHERE {$w} {$order} {$limit}";
 			$sth = $this->db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
@@ -124,9 +123,10 @@ class Model extends \stdClass
 			}
 
 			$offset = '';
-			if(isset($options['offset']) && is_numeric($options['offset'])){
+			if(isset($options['offset']) && is_numeric($options['offset']) && !empty($options['offset'])){
 				$offset = ' OFFSET '.(int)$options['offset'];
 			}
+
 			$order = '';
 			if(isset($options['order']) && !empty($options['order'])){
 				$orderBy = ' ORDER BY ';
@@ -155,7 +155,7 @@ class Model extends \stdClass
 			}
 
 			$table = strtolower($model);
-			$sql = "SELECT {$fields} FROM `{$table}` WHERE {$w} {$order} {$limit}";
+			$sql = "SELECT {$fields} FROM `{$table}` WHERE {$w} {$order} {$offset} {$limit}";
 			$sth = $this->db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
 			$sth->execute($args);
 
