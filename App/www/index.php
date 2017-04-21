@@ -46,8 +46,12 @@ $router->post('/Episode/getEpisodesTitle',['controller' => 'Episode', 'action' =
 $router->get('/Biographie',['controller' => 'Biographie', 'action' => 'index']);
 $router->get('/Projet',['controller' => 'Page', 'action' => 'projet']);
 
+
+$router->get('/Test',['controller' => 'Episode', 'action' => 'test']);
+
+
 // Administrateur
-$router->get('/Admin/',['controller' => 'Admin', 'action' => 'index','admin' => true]);
+$router->get('/Admin/',['controller' => 'Admin', 'action' => 'index']);
 $router->get('/Episode/add',['controller' => 'Episode', 'action' => 'add']);
 $router->post('/Episode/add',['controller' => 'Episode', 'action' => 'add']);
 $router->get('/Episode',['controller' => 'Episode', 'action' => 'index']);

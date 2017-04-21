@@ -36,22 +36,19 @@ class Model extends \stdClass
 			$this->connect();
 
 			$model = (new \ReflectionClass($this))->getShortName();
-
-			$sql = 'DELETE FROM '.strtolower($model).' WHERE id=?';
+			$table = strtolower($model);
+			$sql = "DELETE FROM `{$table}` WHERE id = ?";
 			$sth = $this->db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
 			$sth->execute(array($pkey));
 
 		} catch (\Exception $ex){
-			error_log("DELETE : ".$ex->getMessage());
 			return false;
 		}
 		return true;
-
 	}
 
 
 	public function count($options = array()){
-
 		try {
 			$this->connect();
 			$model = (new \ReflectionClass($this))->getShortName();
@@ -84,16 +81,13 @@ class Model extends \stdClass
 			if(empty($w))$w = '1=1';
 
 
-			$fields = 'count(*) as count';
-
-			$sql = 'SELECT '.$fields.' FROM '.strtolower($model).' WHERE '.$w.' '.$order.' '.$limit;
-			$result = $this->db->query($sql);
-
-			$count = 0;
-			if($result){
-				$count = $result->fetch()->count;
-			}
-
+			$fields = '';
+			$table = strtolower($model);
+			$sql = "SELECT count(*) as count FROM `{$table}` WHERE {$w} {$order} {$limit}";
+			$sth = $this->db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+			$sth->execute($args);
+			$result = $sth->fetch();
+			$count = $result->count;
 		} catch (\Exception $ex){
 				return false;
 		}
@@ -122,7 +116,6 @@ class Model extends \stdClass
 						$operation = '';
 					} 
 					$where[] = ' '.$key.$operation.$value;
-					
 				}
 			}
 			$limit = '';
@@ -144,7 +137,15 @@ class Model extends \stdClass
 			}
 
 			$w = implode('AND',$where);
-			if(empty($w))$w = '1=1';
+			if(empty($w)){
+				$args = [
+					'1',
+					'1'
+				];
+				$w = '? = ?';
+			} else {
+				$args = [];
+			}
 
 
 			if(isset($options['field']) && !empty($options['field'])){
@@ -153,15 +154,15 @@ class Model extends \stdClass
 				$fields = '*';
 			}
 
-			$sql = 'SELECT '.$fields.' FROM '.strtolower($model).' WHERE '.$w.' '.$order.' '.$limit.' '.$offset;
-			
-			//echo $sql.'<br>';
-			$result = $this->db->query($sql);
+			$table = strtolower($model);
+			$sql = "SELECT {$fields} FROM `{$table}` WHERE {$w} {$order} {$limit}";
+			$sth = $this->db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+			$sth->execute($args);
 
 			if(isset($options['type']) && $options['type'] == 'one'){
-				return $result->fetch();
+				return $sth->fetch();
 			} else {
-				return $result->fetchAll();
+				return $sth->fetchAll();
 			}
 		} catch (\Exception $ex){
 				return false;
@@ -202,28 +203,37 @@ class Model extends \stdClass
 
 
 			$model = (new \ReflectionClass($this))->getShortName();
-
+			$table = strtolower($model);
 
 			$field = array();
 			foreach($data as $key => $content){
 				//$field[$key] = $this->db->quote($content);
 				$field[$key] = $content;
 			}
-
 			// Vérifie si il y a un champ modified qui existe et met la date/heure courante
-			$sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = '".strtolower($model)."' AND column_name LIKE 'modified'";
-			$result = $this->db->query($sql);
-			if($result->fetch()){
+			$sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = ? AND column_name LIKE ?";
+			$args = [
+				$table,
+				'modified'
+			];
+			$sth = $this->db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+			$sth->execute($args);
+
+			if($sth->fetch()){
 				$field['modified'] = date('Y-m-d H:i:s');
 			}
 
 			// INSERT
 			if(!isset($field['id']) || empty($field['id'])){
-
 				// Vérifie si il y a un champ created existe et met la date/heure courante
-				$sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = '".strtolower($model)."' AND column_name LIKE 'created'";
-				$result = $this->db->query($sql);
-				if($result->fetch()){
+				$sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = ? AND column_name LIKE ?";
+				$args = [
+					$table,
+					'created'
+				];
+				$sth = $this->db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+				$sth->execute($args);
+				if($sth->fetch()){
 					$field['created'] = date('Y-m-d H:i:s');
 				}
 
@@ -236,14 +246,16 @@ class Model extends \stdClass
 					$prepKeys[':'.$key] = $value;
 				}
 
+				$key = trim($keys,',');
+				$values = trim($values,',');
 
-				$sql = 'INSERT INTO '.strtolower($model).' ('.trim($keys,',').') VALUES ('.trim($values,',').');';
+				$sql = "INSERT INTO `{$table}` ({$keys}) VALUES ({$values});";
 
 				$sth = $this->db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
 				$sth->execute($prepKeys);
 
 				// Retourne l'enregistrement
-				$sql = 'SELECT * FROM '.strtolower($model).' WHERE id = ?';
+				$sql = "SELECT * FROM `{$table}` WHERE id = ?";
 				$sth = $this->db->prepare($sql);
 				$sth->execute(array($this->db->lastInsertId()));
 				$result = $sth->fetch();
@@ -257,16 +269,15 @@ class Model extends \stdClass
 					$fields .= '`'.$key.'` = :'.$key.',';
 					$prepKeys[':'.$key] = $value;
 				}
-				$sql = 'UPDATE '.strtolower($model).' SET '.trim($fields,',').' WHERE `id` = :id';//.$field['id'].';';
+				$sql = "UPDATE `{$table}` SET ".trim($fields,',')." WHERE `id` = :id";
 				$sth = $this->db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
 				$sth->execute($prepKeys);
 				// Retourne l'enregistrement
-				$sql = 'SELECT * FROM '.strtolower($model).' WHERE id = ?';
+				$sql = "SELECT * FROM `{$table}` WHERE id = ?";
 				$sth = $this->db->prepare($sql);
 				$sth->execute(array($field['id']));
 				$result = $sth->fetch();
 			}
-			//$this->db->close();
 			return $result;
 	 } catch(\Exception $ex){
 	 	error_log($ex->getMessage());
