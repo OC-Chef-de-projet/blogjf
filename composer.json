@@ -1,0 +1,19 @@
+{
+	"name": "Blog",
+	"description": "Blog de l'écrivain",
+	"authors": [
+		{
+			"name": "Pierre-Sylvain Augereau",
+			"email": "ps.augereau@gmail.com"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Core\\": "Core/",
+			"App\\": "App/"
+		}
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^5.7"
+	}
+}

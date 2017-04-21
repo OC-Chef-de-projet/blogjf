@@ -1,0 +1,453 @@
+/* Reset */
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* 
+ * Suppression des coins arrondis 
+ * de bootstrap 
+*/
+* {
+    border-radius: 0 !important;
+}
+
+/**
+ * Page de présentation
+ */
+.presentation {
+    background: url("../img/alaska.jpg") no-repeat center center fixed;
+    min-height: 100%;
+    background-size: cover;
+}
+.presentation,
+.biographie,
+.projet {
+    position: relative;
+    opacity: 0.80;
+}
+
+h1 {
+    font-size: 3rem;
+    font-family: 'Playfair Display', serif;
+    color: white;
+    text-align: right;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    color: white;
+    text-align: right;
+}
+
+h2>a,h2>a:visited {
+    color: white;
+}
+
+h2>a:hover  {
+    color: white;
+    text-decoration: underline;
+}
+
+/**
+ * Biographie
+ */
+.biographie {
+    background: url("../img/psa.jpg") no-repeat center center fixed;
+    min-height: 100%;
+    background-size: cover;
+}
+
+
+.card {
+    height: 400px;
+    text-align: center;
+    padding-top: 20px;
+    margin: auto;
+}
+
+.card-reverse {
+    height: 400px;
+    background-color: black;
+    text-align: center;
+    padding-top: 20px;
+    margin: auto;
+}
+
+/**
+ * Projet
+ */
+
+.projet {
+    background-image: url("../img/alaska.jpg");
+    min-height: 100%;
+}
+/*
+.projet .box {
+    background-color: #111;
+    padding: 50px 80px;
+}
+
+.projet h3 {
+    text-align: center;
+    color: white;
+}
+
+.projet .box2 {
+    background-color: white;
+    padding: 50px 50px;
+}
+*/
+
+
+/*
+ * Rotations
+ */
+.gly-rotate-90 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.gly-rotate-180 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.gly-rotate-270 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+
+
+
+/*
+.focus {
+  background-color: #ff2030 !important;
+  color:white;
+}
+
+
+
+
+
+.btnlink {
+    background-color: black;
+    border-color: black;
+}
+
+.btnlink:hover {
+    color: black;
+    border-color: black;
+    background-color: white;
+}
+
+.triangle {
+    width: 0px;
+    border: 20px solid transparent;
+    border-top: 20px solid black;
+}
+
+h1 {
+    font-size: 3rem;
+    font-family: 'Playfair Display', serif;
+    color: white;
+    text-align: right;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    color: white;
+    text-align: right;
+}
+
+h2>a,h2>a:visited {
+    color: white;
+}
+
+h2>a:hover  {
+    color: white;
+    text-decoration: underline;
+}
+
+h3 {
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-family: 'Playfair Display', serif;
+    color: white;
+}
+
+h4 {
+    color: white;
+}
+
+.card {
+    height: 400px;
+    text-align: center;
+    padding-top: 20px;
+    margin: auto;
+}
+
+.card-reverse {
+    height: 400px;
+    background-color: black;
+    text-align: center;
+    padding-top: 20px;
+    margin: auto;
+}
+
+
+
+a {
+    font-family: 'Playfair Display', serif;
+}
+
+._box {
+    color: black;
+    background-color: #ccc;
+}
+
+
+
+.presentation,
+.biographie,
+.projet {
+    position: relative;
+    opacity: 0.70;
+}
+
+
+.inactive {
+    color: #333 !important;
+}
+
+
+
+.navEpisode {
+    text-align: left;
+}
+
+
+
+
+
+
+
+.Episode-head {}
+
+
+
+.Episode-title {
+}
+
+._titre_chapitre {
+    margin-top: 50px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: flex-end;
+}
+
+.block-titre {
+    background-color: black;
+    text-align: center;
+    padding: 0px 10px 0px 10px;
+    color: white;
+}
+
+._titre_chapitre>div>h2 {
+    text-align: left;
+    font-family: 'Playfair Display', serif;
+    font-size: 2vw;
+}
+
+
+.presentation .episode ul {
+    font-family: 'Playfair Display', serif;
+    color: white;
+    text-align: left;
+    font-size: 3vw;
+}
+
+.presentation .episode>ul>li {
+    list-style: none;
+    padding-left: 0;
+}
+
+.presentation .episode ul a {
+    color: white;
+    text-decoration: none;
+    font-size: 3vw;
+}
+
+.presentation .episode ul a:hover {
+    text-decoration: underline;
+}
+
+
+
+.biographie {
+    background: url("../img/psa.jpg") no-repeat center center fixed;
+    min-height: 100%;
+    background-size: cover;
+}
+
+
+.box {
+    color: #777;
+    background-color: white;
+    text-align: center;
+    padding: 20px 20px;
+    text-align: justify;
+    color: black;
+    min-height: 250px;
+}
+
+.biographie .block {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    margin: auto;
+}
+
+.biographie .uard {
+    background-color: black;
+}
+
+
+
+.projet {
+    background-image: url("../img/alaska.jpg");
+    min-height: 100%;
+}
+
+.projet .box {
+    background-color: #111;
+    padding: 50px 80px;
+}
+
+.projet h3 {
+    text-align: center;
+    color: white;
+}
+
+.projet .box2 {
+    background-color: white;
+    padding: 50px 50px;
+}
+
+.navbar-bottom {
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    margin-bottom: 0;
+}
+
+
+/**
+ * Affichage d'un épisode
+ */
+.episode-suite {
+  background-color: #555;
+}
+
+.episode-suite a {
+  color: white;
+}
+
+
+.episode h2 {
+    text-align: left;
+}
+
+.episode-head {
+    background-color: black;
+    color: white;
+}
+
+.episode-box-fill {
+  background-color: #EEE;
+}
+
+.episode-box {
+    color: #777;
+    background-color: #EEE;
+    text-align: center;
+    padding: 20px 20px;
+    text-align: justify;
+    color: black;
+    min-height: 250px;
+}
+
+.episode-nav {
+  color: black;
+  background-color: #ccc;
+}
+
+.episode-nav a:visited,.episode-nav a{
+  color: black;
+}
+
+.episode-nav a:hover {
+  color: black;
+  text-decoration: underline;
+}
+
+/*
+ * Commentaire
+ */
+.comment-box {
+    margin-bottom: 10px;
+    background-color: white;
+    padding-bottom: 10px;
+}
+
+.comment-head {
+    padding-top: 5px;
+    border-bottom: 1px solid black;
+    font-family: 'Playfair Display', serif;
+    color: black;
+}
+
+.comment-action {
+    text-align: right;
+}
+
+.comment-text {
+    padding-top: 10px;
+}
+
+.glyphicon-ban-circle {
+    color: red;
+}
+
+.abuse {
+    cursor: pointer;
+}
+
+.abuse-on {
+  -webkit-filter: blur(2px);
+  filter: blur(2px);
+}
+

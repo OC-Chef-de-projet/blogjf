@@ -1,0 +1,6 @@
+<IfModule mod_rewrite.c>
+   RewriteEngine on
+   #RewriteRule    ^$ App/www/    [L]
+   #RewriteRule    (.*) App/www/$1 [L]
+   RewriteRule (.*) App/www/index.php?url=$1 [QSA,L]
+</IfModule>
