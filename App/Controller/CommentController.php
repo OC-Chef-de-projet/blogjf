@@ -159,8 +159,7 @@ class CommentController extends \Core\Controller
 				$this->Comment->save($data);
 				$message = 'Merci pour votre commentaire';
 			}
-		}
-		catch(Exception $ex){
+		} catch(\Exception $ex){
 			$message = $ex->getMessage();
 		}
 		echo json_encode(['message' => $message]);

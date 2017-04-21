@@ -208,19 +208,6 @@ class EpisodeController extends \Core\Controller
 		return($response);
 	}
 
-	public function test(){
-		$options = array(
-			'field' => [
-				'id',
-				'title'
-			]
-		);
-		$f = $this->Episode->find($options);
-		exit;
-		
-	}
-
-
 	public function getEpisodeTitle($episode){
 		$options = [
 			'type' => 'one',
