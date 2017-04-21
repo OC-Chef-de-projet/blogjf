@@ -53,7 +53,7 @@ class CommentController extends \Core\Controller
 				$message = 'Commentaire approuvé';
 			}
 		}
-		catch(Exception $ex){
+		catch(\Exception $ex){
 			$message = $ex->getMessage();
 		}
 		echo json_encode(['message' => $message]);
@@ -101,7 +101,7 @@ class CommentController extends \Core\Controller
 				$message = 'Commentaire supprimé';
 			}
 		}
-		catch(Exception $ex){
+		catch(\Exception $ex){
 			$message = $ex->getMessage();
 		}
 		echo json_encode(['message' => $message]);
@@ -125,7 +125,7 @@ class CommentController extends \Core\Controller
 					}
 			}
 		}
-		catch(Exception $ex){
+		catch(\Exception $ex){
 			$message = $ex->getMessage();
 		}
 		echo json_encode(['message' => $message]);
