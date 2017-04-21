@@ -217,7 +217,6 @@ class EpisodeController extends \Core\Controller
 			]
 		);
 		$f = $this->Episode->find($options);
-		echo '<prE>';print_r($f);echo '</pre>';
 		exit;
 		
 	}
