@@ -1,4 +1,4 @@
-<?php  
+<?php
 namespace Core;
 
 /**
@@ -14,10 +14,10 @@ class Route {
 	}
 
 	/**
-	 * Recherche de la corespondance de 
+	 * Recherche de la corespondance de
 	 * la route
 	 * @param  string $url URL
-	 * @return bool      True si l'url 
+	 * @return bool      True si l'url
 	 */
 	public function match($url){
 		$url = trim($url,'/');
@@ -35,7 +35,7 @@ class Route {
 	}
 
 	/**
-	 * Appel la fonction
+	 * Appel la methode
 	 *
 	 * @return [type] [description]
 	 */

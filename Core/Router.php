@@ -8,7 +8,6 @@ class Router {
 
 	public function __construct($url){
 		$this->url = $url;
-
 	}
 
 
@@ -38,7 +37,7 @@ class Router {
 		// dans le tableau des routes
 		$method = $_SERVER['REQUEST_METHOD'];
 		if(!isset($this->routes[$method ])){
-			throw new \Exception("Méthode $method inconnue ".$this->url);
+			throw new \Exception("Méthode $method inconnue ".$this->url,9000);
 		}
 
 		foreach($this->routes[$method] as $route){
@@ -47,7 +46,7 @@ class Router {
 				return $route->call();
 			}
 		}
-		throw new \Exception("Routage inconnu ".$this->url);
+		throw new \Exception("Routage inconnu ".$this->url,404);
 	}
 
 }
