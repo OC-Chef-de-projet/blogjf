@@ -32,12 +32,12 @@ class Html extends View
 	public function rewrite($string){
         $speciaux = array('?','!','@','#','%','&amp;','*','(',')','[',']','=','+',' ',';',':','\'','.','_');
         $string = str_replace($speciaux, "-", $string);
-        $string = $this->remove_accents($string);
+        $string = $this->removeAccents($string);
         $string = strtolower(strip_tags($string));
         return $string;
 
 	}
-	function remove_accents($str, $encoding='utf-8') {
+	private function removeAccents($str, $encoding='utf-8') {
 		// transformer les caractères accentués en entités HTML
 		$str = htmlentities($str, ENT_NOQUOTES, $encoding);
 
