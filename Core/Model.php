@@ -82,7 +82,7 @@ class Model extends \stdClass
 			$table = strtolower($model);
 			$sql = "SELECT count(*) as count FROM `{$table}` WHERE {$w} {$order} {$limit}";
 			$sth = $this->db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
-			$sth->execute($args);
+			$sth->execute();
 			$result = $sth->fetch();
 			$count = $result->count;
 		} catch (\Exception $ex){
