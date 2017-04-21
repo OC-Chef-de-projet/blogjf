@@ -7,6 +7,7 @@
 			"email": "ps.augereau@gmail.com"
 		}
 	],
+	"license": "MIT",
 	"autoload": {
 		"psr-4": {
 			"Core\\": "Core/",
