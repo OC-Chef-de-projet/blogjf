@@ -131,7 +131,7 @@ class CommentController extends \Core\Controller
 		catch(\Exception $ex){
 			$message = $ex->getMessage();
 		}
-		echo json_encode(['message' => $message]);exit;
+		echo json_encode(['message' => $message]);
 	}
 
 	/**
