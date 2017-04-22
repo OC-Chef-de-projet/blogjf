@@ -57,6 +57,8 @@ $router->post('/Episode/add',['controller' => 'Episode', 'action' => 'add']);
 $router->get('/Episode',['controller' => 'Episode', 'action' => 'index']);
 $router->get('/Episode/edit/:id',['controller' => 'Episode', 'action' => 'edit']);
 $router->post('/Episode/edit/:id',['controller' => 'Episode', 'action' => 'edit']);
+$router->post('/ApproveComment',['controller' => 'Comment', 'action' => 'approve']);
+$router->post('/RemoveComment',['controller' => 'Comment', 'action' => 'remove']);
 
 
 $router->run();

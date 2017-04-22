@@ -25,9 +25,20 @@ Lors d'une première installation copier ces fichiers en **config.php** et **dat
 	 * Configuration de l'application
 	 */
 	$config = [
-		'episodeLimit' => 5, 			// Nombre de titre d'épisodes à afficher en une seule fois
-		'maxDepth' => 3,			// Profondeur max des commentaires
-		'salt' => '12345679ABCDeesc'	// Chaine de caratères pour la hachage des mots de passe
+		// Nombre de titre d'épisodes à afficher en une seule fois
+		'episodeLimit' => 5,
+		// Profondeur max des commentaires
+		'maxDepth' => 3,
+		// Chaine de caratères pour la hachage des mots de passe
+		'salt' => '12345679ABCDeesc',
+		// Serveur SMTP pour envoyer les mails
+		'SMTPServer' => 'smtp.gmail.com',
+		// Login du serveur SMTP
+		'SMTPUsername' => 'me@gmail.com',
+		// Mot de passe pour le serveur SMTP
+		'SMTPPassword' => 'VerySuperSecret',
+		// Adresse email pour recevoir les notifications de signalement d'abus
+		'email' => 'j.forteroche@gmail.com'
 	];
 
 ### database.php

@@ -116,9 +116,14 @@ class CommentController extends \Core\Controller
 			if(isset($_POST['ajax']) && $_POST['ajax'] && isset($_POST['comment_id']) && !empty($_POST['comment_id'])){
 					$data['abuse'] = true;
 					$data['id'] = $_POST['comment_id'];
-					$h = $this->Comment->save($data);
-					error_log(print_r($h,true));
-					if($h){
+					$abuseComment = $this->Comment->find([
+						'type' => 'one',
+						'conditions' => [
+							'id' => $data['id']
+						]
+					]);
+					if($this->Comment->save($data)){
+						\Core\Mail::sendAbuseNotification($abuseComment);
 						$message = 'Votre demande a été transmise à l\'administrateur du site';
 					}
 			}
@@ -126,7 +131,7 @@ class CommentController extends \Core\Controller
 		catch(\Exception $ex){
 			$message = $ex->getMessage();
 		}
-		echo json_encode(['message' => $message]);
+		echo json_encode(['message' => $message]);exit;
 	}
 
 	/**

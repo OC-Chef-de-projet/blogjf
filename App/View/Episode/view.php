@@ -184,6 +184,7 @@ function setAbuse(comment_id) {
             comment_id: comment_id,
         },
         success: function(json) {
+            console.log(json);
             data = JSON.parse(json);
             $("#modal-comment").modal('hide');
             alert(data.message);
