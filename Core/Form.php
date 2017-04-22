@@ -36,8 +36,8 @@ class Form extends View
 		if(isset($field['label']) && !empty($field['label'])){
 			echo '<label for="'.$id.'">'.$field['label'].'</label>'."\n";
 		}
-		$required = '';
 
+		$required = '';
 		if(isset($field['required']) && !empty($field['required'])){
 			$required = 'required=""';
 		}
@@ -52,6 +52,11 @@ class Form extends View
 			$class = 'class="'.$field['class'].'"';
 		}
 
+		$placeholder = '';
+		if(isset($field['placeholder'])){
+			$placeholder = 'placeholder="'.$field['placeholder'].'"';
+		}
+
 
 		if($field['type'] == 'textarea'){
 			echo '<textarea class="tiny" name="'.$field['field'].'"  id="'.$id.'" '.$required.'>'.$value.'</textarea>'."\n";
@@ -62,7 +67,7 @@ class Form extends View
 			} else {
 				$text_value = '';
 			}
-			echo '<input name="'.$field['field'].'"  type="'.$field['type'].'" id="'.$id.'" '.$required.' '.$text_value.' '.$class.'/>'."\n";
+			echo '<input name="'.$field['field'].'"  type="'.$field['type'].'" id="'.$id.'" '.$required.' '.$text_value.' '.$class.' '.$placeholder.' />'."\n";
 		}
 	}
 
