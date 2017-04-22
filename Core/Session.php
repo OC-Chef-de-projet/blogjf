@@ -60,3 +60,4 @@ class Session
         unset($_SESSION[$key]);
     }
 }
+

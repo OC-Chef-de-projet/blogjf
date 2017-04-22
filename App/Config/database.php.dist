@@ -16,3 +16,4 @@ CREATE USER 'blog'@'localhost' IDENTIFIED BY 'topsecret';
 GRANT ALL PRIVILEGES ON blog . * TO 'blog'@'localhost';
 FLUSH PRIVILEGES;
 */
+
