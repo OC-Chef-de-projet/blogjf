@@ -11,13 +11,13 @@ class Session
 	 * Instance
 	 * @var Session
 	 */
-	static $instance;
+	private static $instance;
 
 	/**
 	 * Retourne l'instance de la classe
 	 * @return Session
 	 */
-	static function getInstance(){
+	public static function getInstance(){
 		if(!self::$instance){
 			self::$instance = new Session();
 		}
