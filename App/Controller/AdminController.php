@@ -17,6 +17,9 @@ class AdminController extends \Core\Controller
 	 * @return void
 	 */
 	public function index(){
+
+		$this->restricted();
+
 		$this->layout('admin');
 
 		// Chargement de la liste des comentaires

@@ -14,6 +14,7 @@ class EpisodeController extends \Core\Controller
 	 * administrateur
 	 */
 	public function index(){
+		$this->restricted();
 		$this->layout('admin');
 
 		// Tous les episodes dans l'ordre
@@ -33,6 +34,7 @@ class EpisodeController extends \Core\Controller
 	 * Mode administrateur uniquement
 	 */
 	public function add(){
+		$this->restricted();
 		$this->layout('admin');
 		$errorMessage = '';
 
@@ -52,7 +54,7 @@ class EpisodeController extends \Core\Controller
 	 * @return void
 	 */
 	public function edit($id = 0){
-
+		$this->restricted();
 		$this->layout('admin');
 
 		// Enregistrement des données postées
@@ -114,12 +116,16 @@ class EpisodeController extends \Core\Controller
 	 * @return [type]      [description]
 	 */
 	public function delete($id = 0){
+		$this->restricted();
 		$this->Episode->delete($id);
 		$this->redirect('Episode','index',array());
 	}
 
 
-
+	/**
+	 * Recherche le dernier épisode publié
+	 * @return array Episode
+	 */
 	public function getLastEpisode(){
 		$options = [
 			'type' => 'one',
@@ -249,7 +255,7 @@ class EpisodeController extends \Core\Controller
 	}
 
 	/**
-	 * Afficahge du résumé d'un épisode
+	 * Affichage du résumé d'un épisode
 	 * @param  integer $current_episode_id n° de l'épisode
 	 * @return [type]                      [description]
 	 */

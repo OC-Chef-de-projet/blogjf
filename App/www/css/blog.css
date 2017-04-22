@@ -19,6 +19,14 @@ html {
     border-radius: 0 !important;
 }
 
+.vertical-center {
+  min-height: 100%;     /* Pour la compatibilité avec les navigateurs */
+  min-height: 100vh; 
+
+  display: flex;
+  align-items: center;
+}
+
 /**
  * Page de présentation
  */

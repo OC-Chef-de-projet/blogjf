@@ -14,6 +14,7 @@ class CommentController extends \Core\Controller
 	 * @return void
 	 */
 	public function index(){
+		$this->restricted();
 		$episodes = $this->Episode->find();
 		$this->set('episodes',$episodes);
 		$this->display('index');
@@ -27,6 +28,7 @@ class CommentController extends \Core\Controller
 	 * @return void
 	 */
 	public function getComments(){
+		$this->restricted();
 		$options = [
 			'order' => [
 				'id' => 'desc'
@@ -43,7 +45,7 @@ class CommentController extends \Core\Controller
 	 * @return string      Message d'état
 	 */
 	public function approve($id = 0){
-
+		$this->restricted();
 		$message = "Impossible de changer l'état de ce commentaire";
 		try {
 			if(isset($_POST['ajax']) && $_POST['ajax']){
@@ -66,7 +68,7 @@ class CommentController extends \Core\Controller
 	 * @return string      Message au format json
 	 */
 	public function remove($id = 0){
-
+		$this->restricted();
 		$message = "Impossible de supprimer ce commentaire";
 		try {
 			if(isset($_POST['ajax']) && $_POST['ajax']){
@@ -168,8 +170,7 @@ class CommentController extends \Core\Controller
 	 * @param  boolean $unset_children Suppresion des enfants dans le tableau de résultat
 	 * @return array                   Tableau de commentaires
 	 */
-	public function findAllWithChildren($episode_id, $unset_children = true)
-    {
+	public function findAllWithChildren($episode_id, $unset_children = true){
     	$comments = $comments_by_id = $this->findAllById($episode_id);
 
         foreach ($comments as $id => $comment) {

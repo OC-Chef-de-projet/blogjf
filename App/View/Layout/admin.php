@@ -31,7 +31,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/blogjf/Episode/add">Ajouter un episode</a></li>
-                    <li><a href="#">Deconnexion</a></li>
+                    <li><a href="/blogjf/Logout">Deconnexion</a></li>
                 </ul>
             </div>
         </div>

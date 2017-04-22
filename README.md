@@ -25,8 +25,9 @@ Lors d'une première installation copier ces fichiers en **config.php** et **dat
 	 * Configuration de l'application
 	 */
 	$config = [
-		'episodeLimit' => 5, 	// Nombre de titre d'épisodes à afficher en une seule fois
-		'maxDepth' => 3			// Profondeur max des commentaires
+		'episodeLimit' => 5, 			// Nombre de titre d'épisodes à afficher en une seule fois
+		'maxDepth' => 3,			// Profondeur max des commentaires
+		'salt' => '12345679ABCDeesc'	// Chaine de caratères pour la hachage des mots de passe
 	];
 
 ### database.php
@@ -41,8 +42,6 @@ Lors d'une première installation copier ces fichiers en **config.php** et **dat
 			'password' => 'usersecretpassword',	// Mot de passe
 			'database' => 'blog'				// Nom de la base de données
 	];
-
- 
 
 
 

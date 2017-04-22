@@ -40,8 +40,8 @@ class Router {
 			throw new \Exception("Méthode $method inconnue ".$this->url,9000);
 		}
 
-		foreach($this->routes[$method] as $route){
 
+		foreach($this->routes[$method] as $route){
 			if($route->match($this->url)){
 				return $route->call();
 			}
