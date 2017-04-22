@@ -1,0 +1,18 @@
+<?php
+
+/*
+ * Accès à la base de données
+ */
+$database = [
+		'host' => 'localhost',
+		'login' => 'user',
+		'password' => 'usersecretpassword',
+		'database' => 'blog'
+];
+
+
+/*
+CREATE USER 'blog'@'localhost' IDENTIFIED BY 'topsecret';
+GRANT ALL PRIVILEGES ON blog . * TO 'blog'@'localhost';
+FLUSH PRIVILEGES;
+*/
