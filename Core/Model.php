@@ -177,7 +177,6 @@ class Model extends \stdClass
 			$sth->execute($args);
 
 		}catch(\Exception $ex){
-			error_log("SQL : ".$ex->getMessage());
 			return false;
 	 	}
 	 	return true;
@@ -243,7 +242,7 @@ class Model extends \stdClass
 					$prepKeys[':'.$key] = $value;
 				}
 
-				$key = trim($keys,',');
+				$keys = trim($keys,',');
 				$values = trim($values,',');
 
 				$sql = "INSERT INTO `{$table}` ({$keys}) VALUES ({$values});";
@@ -277,7 +276,6 @@ class Model extends \stdClass
 			}
 			return $result;
 	 } catch(\Exception $ex){
-	 	error_log($ex->getMessage());
 		return false;
 	 }
 	}

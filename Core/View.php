@@ -28,7 +28,6 @@ class View extends \stdClass
 		
 		$this->viewAction = $template;
 
-		error_log($template);
         $model = get_called_class();
         $model = preg_replace('/Controller/','',$model);
         $model = preg_replace('#App\\\#','',$model);

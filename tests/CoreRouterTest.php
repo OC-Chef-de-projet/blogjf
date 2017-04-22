@@ -119,7 +119,6 @@ class CoreRouterTest extends TestCase
 		$router = new Core\Router('/route');
 		$router->get('/route',['controller' => 'ctrl', 'action' => 'act']);
 		$result = $router->run();
-		error_log(print_r($result,true));
 
 	}
 }
