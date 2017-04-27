@@ -251,6 +251,9 @@ class EpisodeController extends \Core\Controller
 		if($episode){
 			$episode->url = $this->Html->rewrite($episode->title);
 		}
+		// Gestion du résumé
+		$max = 5000;
+		$episode->content = substr($episode->content,0,$max);
 		return($episode);
 	}
 

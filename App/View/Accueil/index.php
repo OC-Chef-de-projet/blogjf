@@ -62,12 +62,12 @@
                     <div id="navChap">
                         <div>
                             <h2 class="text-left">
-								<a href="#projet">Découvrir le projet</a>
+								<a href="/blogjf/projet">Découvrir le projet</a>
 							</h2>
                         </div>
                         <div>
                             <h2 class="text-left">
-								<a href="#biographie">Qui est Jean Forteroche ?</a>
+								<a href="/blogjf/biographie">Qui est Jean Forteroche ?</a>
 							</h2>
                         </div>
                         <div>
