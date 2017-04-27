@@ -11,7 +11,7 @@
             </div>
         </div>
         <!-- sidebar -->
-        <div class="col-xs-12 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+        <div class="col-xs-12 col-sm-4 col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
             <!-- 5 derniers épisodes -->
             <div class="row">
                 <!-- Entete avec navigation Précédent/suivant -->
@@ -81,12 +81,12 @@
         </div>
         <!--/sidebar-->
         <!-- Résumé dernier episode -->
-        <div class="col-xs-12 col-sm-8 col-sm-offset-1">
+        <div class="col-xs-12 col-sm-7 col-sm-offset-1 col-md-8 col-sm-offset-1">
             <div class="row episode">
                 <div class="col-xs-12 col-sm-8 col-md-4 episode-head">
                     <h2><?php echo $summary->title ?></h2>
                 </div>
-                <div class="col-xs-12 episode-box">
+                <div class="col-xs-12 episode-box episode-summary">
                     <?php echo $summary->content ?>
                 </div>
                 <div class="col-xs-4 col-sm-9 col-md-10 episode-box-fill">&nbsp;</div>

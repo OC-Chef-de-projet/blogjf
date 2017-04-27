@@ -2,13 +2,13 @@
 
 body,
 html {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font-size: 100%;
+		font: inherit;
+		vertical-align: baseline;
 }
 
 /* 
@@ -16,78 +16,123 @@ html {
  * de bootstrap 
 */
 * {
-    border-radius: 0 !important;
+		border-radius: 0 !important;
 }
 
 .vertical-center {
-  min-height: 100%;     /* Pour la compatibilité avec les navigateurs */
-  min-height: 100vh; 
+	min-height: 100%;     /* Pour la compatibilité avec les navigateurs */
+	min-height: 100vh; 
 
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 /**
  * Page de présentation
  */
 .presentation {
-    background: url("../img/alaska.jpg") no-repeat center center fixed;
-    min-height: 100%;
-    background-size: cover;
+		background: url("../img/alaska.jpg") no-repeat center center fixed;
+		min-height: 100%;
+		background-size: cover;
 }
 .presentation,
 .biographie,
 .projet {
-    position: relative;
-    opacity: 0.80;
+		position: relative;
+		opacity: 0.80;
 }
 
 h1 {
-    font-size: 3rem;
-    font-family: 'Playfair Display', serif;
-    color: white;
-    text-align: right;
+		font-size: 3vw;
+		font-family: 'Playfair Display', serif;
+		color: white;
+		text-align: right;
 }
 
 h2 {
-    font-size: 1.5rem;
-    font-family: 'Playfair Display', serif;
-    color: white;
-    text-align: right;
+		font-family: 'Playfair Display', serif;
+		color: white;
+		text-align: right;
 }
 
+/**
+ * Responsive
+ */
+@media screen and (min-height: 1024px){
+	.episode-summary {
+		height: 850px;
+		overflow: hidden;
+	}
+	
+
+}
+@media screen and (min-height: 600px) and (max-height: 1024px) {
+	.episode-summary {
+		height: 600px;
+		overflow: hidden;
+	}
+}
+@media screen and (max-height: 600px){
+	.episode-summary {
+		height: 100px;
+		overflow: hidden;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	h1 {
+		font-size: 8vw;
+	}
+	h2 {
+		font-size: 6vw;
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1280px) {
+	h2 {
+		font-size: 3vw;
+	}
+}
+
+@media screen and (min-width: 1280px){
+	h2 {
+		font-size: 1.8vw;
+	}
+}
+
+
 h2>a,h2>a:visited {
-    color: white;
+		color: white;
 }
 
 h2>a:hover  {
-    color: white;
-    text-decoration: underline;
+		color: white;
+		text-decoration: underline;
 }
 
 /**
  * Biographie
  */
 .biographie {
-    background: url("../img/psa.jpg") no-repeat center center fixed;
-    min-height: 100%;
-    background-size: cover;
+		background: url("../img/psa.jpg") no-repeat center center fixed;
+		min-height: 100%;
+		background-size: cover;
 }
 
 
 .card {
-    /*height: 200px;*/
-    text-align: center;
-    padding-top: 20px;
-    margin: auto;
+		/*height: 200px;*/
+		text-align: center;
+		padding-top: 20px;
+		margin: auto;
 }
 
 .card-reverse {
-    height: 400px;
-    background-color: black;
-    text-align: center;
-    padding-top: 20px;
-    margin: auto;
+		height: 400px;
+		background-color: black;
+		text-align: center;
+		padding-top: 20px;
+		margin: auto;
 }
 
 /**
@@ -95,39 +140,39 @@ h2>a:hover  {
  */
 
 .projet {
-    background-image: url("../img/alaska.jpg");
-    min-height: 100%;
-    background-size: cover;
+		background-image: url("../img/alaska.jpg");
+		min-height: 100%;
+		background-size: cover;
 }
 
 /*
  * Rotations
  */
 .gly-rotate-90 {
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-  transform: rotate(90deg);
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	transform: rotate(90deg);
 }
 
 .gly-rotate-180 {
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
-  -webkit-transform: rotate(180deg);
-  -moz-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
-  transform: rotate(180deg);
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
 }
 
 .gly-rotate-270 {
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-  -webkit-transform: rotate(270deg);
-  -moz-transform: rotate(270deg);
-  -ms-transform: rotate(270deg);
-  -o-transform: rotate(270deg);
-  transform: rotate(270deg);
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+	-webkit-transform: rotate(270deg);
+	-moz-transform: rotate(270deg);
+	-ms-transform: rotate(270deg);
+	-o-transform: rotate(270deg);
+	transform: rotate(270deg);
 }
 
 
@@ -136,85 +181,87 @@ h2>a:hover  {
  * Affichage d'un épisode
  */
 .episode-suite {
-  background-color: #555;
+	background-color: #555;
 }
 
 .episode-suite a {
-  color: white;
+	color: white;
 }
 
 
 .episode h2 {
-    text-align: left;
+		text-align: left;
 }
 
 .episode-head {
-    background-color: black;
-    color: white;
+		background-color: black;
+		color: white;
 }
 
 .episode-box-fill {
-  background-color: #EEE;
+	background-color: #EEE;
 }
 
 .episode-box {
-    color: #777;
-    background-color: #EEE;
-    text-align: center;
-    padding: 20px 20px;
-    text-align: justify;
-    color: black;
-    min-height: 250px;
+		color: #777;
+		background-color: #EEE;
+		text-align: center;
+		padding: 20px 20px;
+		text-align: justify;
+		color: black;
+		min-height: 250px;
 }
 
 .episode-nav {
-  color: black;
-  background-color: #ccc;
+	color: black;
+	background-color: #ccc;
 }
 
 .episode-nav a:visited,.episode-nav a{
-  color: black;
+	color: black;
 }
 
 .episode-nav a:hover {
-  color: black;
-  text-decoration: underline;
+	color: black;
+	text-decoration: underline;
 }
+
+
 
 /*
  * Commentaire
  */
 .comment-box {
-    margin-bottom: 10px;
-    background-color: white;
-    padding-bottom: 10px;
+		margin-bottom: 10px;
+		background-color: white;
+		padding-bottom: 10px;
 }
 
 .comment-head {
-    padding-top: 5px;
-    border-bottom: 1px solid black;
-    font-family: 'Playfair Display', serif;
-    color: black;
+		padding-top: 5px;
+		border-bottom: 1px solid black;
+		font-family: 'Playfair Display', serif;
+		color: black;
 }
 
 .comment-action {
-    text-align: right;
+		text-align: right;
 }
 
 .comment-text {
-    padding-top: 10px;
+		padding-top: 10px;
 }
 
 .glyphicon-ban-circle {
-    color: red;
+		color: red;
 }
 
 .abuse {
-    cursor: pointer;
+		cursor: pointer;
 }
 
 .abuse-on {
-  -webkit-filter: blur(2px);
-  filter: blur(2px);
+	-webkit-filter: blur(2px);
+	filter: blur(2px);
 }
 
