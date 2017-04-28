@@ -90,22 +90,6 @@ class CoreRouterTest extends TestCase
 		$this->fail("L'exception n'a pas été levée");
 	}
 
-	/*
-	 * Test de la methode run avec méthode et sans route
-	 */
-	public function testRunAvecMethodeSansRoute(){
-
-		try {
-			$_SERVER['REQUEST_METHOD'] = 'GET';
-			$router = new Core\Router('/route');
-			$router->get('/none',['controller' => 'ctrl', 'action' => 'act']);
-			$result = $router->run();
-		} catch(\Exception $ex){
-			$this->assertEquals($ex->getCode(),404);
-			return;
-		}
-		$this->fail("L'exception n'a pas été levée");
-	}
 
 	/*
 	 * Test de la methode run
