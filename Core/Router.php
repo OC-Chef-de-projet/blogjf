@@ -39,14 +39,12 @@ class Router {
 		if(!isset($this->routes[$method ])){
 			throw new \Exception("Méthode $method inconnue ".$this->url,9000);
 		}
-
-
 		foreach($this->routes[$method] as $route){
 			if($route->match($this->url)){
 				return $route->call();
 			}
 		}
-		throw new \Exception("Routage inconnu ".$this->url,404);
+		header('Location: /ErrorPages/HTTP404.html');
 	}
 
 }
