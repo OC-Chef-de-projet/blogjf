@@ -29,8 +29,6 @@ Lors d'une première installation copier ces fichiers en **config.php** et **dat
 		'episodeLimit' => 5,
 		// Profondeur max des commentaires
 		'maxDepth' => 3,
-		// Chaine de caratères pour la hachage des mots de passe
-		'salt' => '12345679ABCDeesc',
 		// Serveur SMTP pour envoyer les mails
 		'SMTPServer' => 'smtp.gmail.com',
 		// Login du serveur SMTP
