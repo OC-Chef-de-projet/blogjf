@@ -52,14 +52,14 @@
         <div class="row episode">
             <div class="col-xs-12 col-sm-6 col-md-4 episode-head">
                 <h2>
-            <?php echo $episode->title ?>
+            <?= $episode->title ?>
             <a href="/blogjf/">
               <span class="pull-right glyphicon glyphicon-th-list" data-toggle="tooltip" title="Sommaire"></span>
             </a>
           </h2>
             </div>
             <div class="col-xs-12 episode-box">
-                <?php echo $episode->content ?>
+                <?= $episode->content ?>
             </div>
         </div>
         <br>
@@ -153,7 +153,7 @@ function addComment() {
         type: 'POST',
         data: {
             ajax: true,
-            episode_id: "<?php echo $episode->id?>",
+            episode_id: "<?= $episode->id?>",
             author: $("#inputName").val(),
             email: $("#inputEmail").val(),
             content: $("#inputComment").val(),

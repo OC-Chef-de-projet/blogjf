@@ -20,24 +20,24 @@ h2 {
                 <?php foreach($abuses as $abuse): ?>
                 <tr>
                     <td>
-                        <a href="/blogjf/episode/view/<?php echo $abuse->episode_id ?>/<?php echo $abuse->id ?>/#cmt-<?php echo $abuse->id ?>">
-                            <?php echo $abuse->id ?>
+                        <a href="/blogjf/episode/view/<?= $abuse->episode_id ?>/<?= $abuse->id ?>/#cmt-<?= $abuse->id ?>">
+                            <?= $abuse->id ?>
                         </a>
                     </td>
                     <td>
-                        <?php echo $abuse->author.' &lt;'.$abuse->email.'&gt;' ?>
+                        <?= $abuse->author.' &lt;'.$abuse->email.'&gt;' ?>
                     </td>
                     <td>
-                        <?php echo $abuse->content ?>
+                        <?= $abuse->content ?>
                     </td>
                     <td>
-                        <?php echo $abuse->created ?>
+                        <?= $abuse->created ?>
                     </td>
                     <td>
-                        <a href="#" class="approve" data-id="<?php echo $abuse->id ?>">
+                        <a href="#" class="approve" data-id="<?= $abuse->id ?>">
                             <span class="glyphicon glyphicon-ok"></span>
                         </a>
-                        <a href="#" class="delete" data-id="<?php echo $abuse->id ?>">
+                        <a href="#" class="delete" data-id="<?= $abuse->id ?>">
                             <span class="glyphicon glyphicon-trash"></span>
                         </a>
                     </td>
@@ -62,21 +62,21 @@ h2 {
                 <?php foreach($comments as $comment): ?>
                 <tr>
                     <td>
-                        <a href="/blogjf/episode/view/<?php echo $comment->episode_id ?>/<?php echo $comment->id ?>/#cmt-<?php echo $comment->id ?>">
-                            <?php echo $comment->id ?>
+                        <a href="/blogjf/episode/view/<?= $comment->episode_id ?>/<?= $comment->id ?>/#cmt-<?= $comment->id ?>">
+                            <?= $comment->id ?>
                         </a>
                     </td>
                     <td>
-                        <?php echo $comment->author.' &lt;'.$comment->email.'&gt;' ?>
+                        <?= $comment->author.' &lt;'.$comment->email.'&gt;' ?>
                     </td>
                     <td>
-                        <?php echo $comment->content ?>
+                        <?= $comment->content ?>
                     </td>
                     <td>
-                        <?php echo $comment->created ?>
+                        <?= $comment->created ?>
                     </td>
                     <td>
-                        <a href="#" class="delete" data-id="<?php echo $comment->id ?>">
+                        <a href="#" class="delete" data-id="<?= $comment->id ?>">
                             <span class="glyphicon glyphicon-trash"></span>
                         </a>
                     </td>

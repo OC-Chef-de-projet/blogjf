@@ -11,7 +11,7 @@
     <div class="row">
         <?php $this->Form->create('episode'); ?>
         <div class="form-group">
-            <?php echo $this->Form->input([
+            <?= $this->Form->input([
 				'field' => 'title',
 				'label' => 'Titre',
 				'type' => 'text',
@@ -21,14 +21,14 @@
 			?>
         </div>
         <div class="form-group">
-            <?php echo $this->Form->input([
+            <?= $this->Form->input([
 				'field' => 'content',
 				'label' => 'Contenu',
 				'type' => 'textarea',
 				'value' => $episode->content
 				]); ?>
         </div>
-        <?php echo $this->Form->end([
+        <?= $this->Form->end([
 			'value' => 'Envoyer',
 			'class' => 'btn btn-primary'
 		]) ?>

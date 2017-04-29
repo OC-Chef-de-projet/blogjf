@@ -38,8 +38,8 @@
                         <?php foreach($episodes['episodes'] as $episode) { ?>
                         <div>
                             <h2 class="text-left">
-								<a href="/blogjf/Episode/<?php echo $episode->id ?>-<?php echo $episode->url ?>">
-									<?php echo $episode->title ?>
+								<a href="/blogjf/Episode/<?= $episode->id ?>-<?= $episode->url ?>">
+									<?= $episode->title ?>
 								</a>
 							</h2>
                         </div>
@@ -68,7 +68,7 @@
                         </div>
                         <div>
                             <h2 class="text-left">
-								<a href="/blogjf/Episode/<?php echo $first->id ?>-<?php echo $first->url ?>">Commencer le roman</a>
+								<a href="/blogjf/Episode/<?= $first->id ?>-<?= $first->url ?>">Commencer le roman</a>
 							</h2>
                         </div>
                     </div>
@@ -79,23 +79,23 @@
         <div class="col-xs-12 col-sm-7 col-sm-offset-1 col-md-8 col-sm-offset-1">
             <div class="row episode">
                 <div class="col-xs-12 col-sm-8 col-md-4 episode-head">
-                    <h2><?php echo $summary->title ?></h2>
+                    <h2><?= $summary->title ?></h2>
                 </div>
                 <div class="col-xs-12 episode-box episode-summary">
-                    <?php echo $summary->content ?>
+                    <?= $summary->content ?>
                 </div>
                 <div class="col-xs-4 col-sm-9 col-md-10 episode-box-fill">&nbsp;</div>
                 <div class="col-xs-8 col-sm-3 col-md-2 text-right episode-suite">
-                    <a href="/blogjf/Episode/<?php echo $summary->id ?>-<?php echo $summary->url ?>">Lire la suite</a>
+                    <a href="/blogjf/Episode/<?= $summary->id ?>-<?= $summary->url ?>">Lire la suite</a>
                 </div>
             </div>
             <div class="row episode-nav">
                 <div class="col-xs-6">
                     <?php if($navEpisode['previous']): ?>
                     <h2 class="text-left episode-nav">
-							<a href="/blogjf/resume/<?php echo $navEpisode['previous']->id ?>">
+							<a href="/blogjf/resume/<?= $navEpisode['previous']->id ?>">
 							<span class="glyphicon glyphicon-backward"></span>
-								<?php echo $navEpisode['previous']->title ?>
+								<?= $navEpisode['previous']->title ?>
 							</a>
 					</h2>
                     <?php endif; ?>
@@ -103,8 +103,8 @@
                 <div class="col-xs-6">
                     <?php if($navEpisode['next']): ?>
                     <h2 class="text-right episode-nav">
-						<a href="/blogjf/resume/<?php echo $navEpisode['next']->id ?>">
-							<?php echo $navEpisode['next']->title ?>
+						<a href="/blogjf/resume/<?= $navEpisode['next']->id ?>">
+							<?= $navEpisode['next']->title ?>
 							<span class="glyphicon glyphicon-forward"></span>
 						</a>
 					</h2>

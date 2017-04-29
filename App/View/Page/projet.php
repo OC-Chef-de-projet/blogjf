@@ -11,7 +11,7 @@
                 <h2 class="text-center">Le projet</h2></div>
             <div class="episode-box">
                 <p>
-                    <?php echo $project->content ?>
+                    <?= $project->content ?>
                 </p>
                 <div class="text-right">
                     <a href="/blogjf" class="btn btn-small btn-primary btnlink">Accueil</a>
