@@ -46,12 +46,19 @@ Lors d'une première installation copier ces fichiers en **config.php** et **dat
 	 * Accès à la base de données
 	 */
 	$database = [
-			'host' => 'localhost', 				// URL du serveur Mysql
-			'login' => 'user',					// Login
-			'password' => 'usersecretpassword',	// Mot de passe
-			'database' => 'blog'				// Nom de la base de données
+			// URL du serveur Mysql
+			'host' => '127.0.0.1',
+			// Login
+			'login' => 'user',
+			// Mot de passe
+			'password' => 'usersecretpassword',
+			// Nom de la base de données
+			'database' => 'blog',
+			// Port à utiliser
+			'port' => 3306
 	];
 
+Le champ **port** est optionnel. Si vous utilisez ce champ, il est nécessaire de mettre une adresse IP dans le champ **host**, sinon le port ne sera pris en compte. (voir http://stackoverflow.com/questions/21046672/pdo-not-working-with-port)
 
 
 

@@ -9,20 +9,20 @@
     <?php foreach($episodes as $episode){?>
     <tr>
         <td>
-            <?php echo $this->Html->link($episode->id,'/blogjf/episode/view/'.$episode->id) ?>
+            <?= $this->Html->link($episode->id,'/blogjf/episode/view/'.$episode->id) ?>
         </td>
         <td>
-            <?php echo $episode->title?>
+            <?= $episode->title?>
         </td>
         <td>
-            <?php echo $this->dateFormat($episode->created);?>
+            <?= $this->dateFormat($episode->created);?>
         </td>
         <td>
-            <?php echo $this->dateFormat($episode->modified);?>
+            <?= $this->dateFormat($episode->modified);?>
         </td>
         <td>
-            <?php echo $this->Html->link('<span class="glyphicon glyphicon-edit"></span>' ,'/blogjf/episode/edit/'.$episode->id) ?>
-            <?php echo $this->Html->link('<span class="glyphicon glyphicon-trash"></span>' ,'/blogjf/episode/delete/'.$episode->id) ?>
+            <?= $this->Html->link('<span class="glyphicon glyphicon-edit"></span>' ,'/blogjf/episode/edit/'.$episode->id) ?>
+            <?= $this->Html->link('<span class="glyphicon glyphicon-trash"></span>' ,'/blogjf/episode/delete/'.$episode->id) ?>
         </td>
     </tr>
     <?php } ?>

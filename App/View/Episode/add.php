@@ -5,7 +5,7 @@
         </div>
         <?php if($errorMessage): ?>
         <div class="col-xs-12  alert alert-danger">
-            <?php echo $errorMessage; ?>
+            <?= $errorMessage; ?>
         </div>
         <?php endif; ?>
     </div>
@@ -13,12 +13,12 @@
     <div class="row">
         <?php $this->Form->create('Episode'); ?>
         <div class="form-group">
-            <?php echo $this->Form->input([ 'field' => 'title', 'label' => 'Titre', 'type' => 'text', 'class' => 'form-control']); ?>
+            <?= $this->Form->input([ 'field' => 'title', 'label' => 'Titre', 'type' => 'text', 'class' => 'form-control']); ?>
         </div>
         <div class="form-group">
-            <?php echo $this->Form->input([ 'field' => 'content', 'label' => 'Contenu', 'type' => 'textarea' ]); ?>
+            <?= $this->Form->input([ 'field' => 'content', 'label' => 'Contenu', 'type' => 'textarea' ]); ?>
         </div>
-        <?php echo $this->Form->end(['value' => 'Envoyer', 'class' => 'btn btn-primary' ]) ?>
+        <?= $this->Form->end(['value' => 'Envoyer', 'class' => 'btn btn-primary' ]) ?>
     </div>
 </div>
 <script type="text/javascript">
