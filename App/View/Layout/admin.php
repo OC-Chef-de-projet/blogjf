@@ -7,9 +7,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Administration Billet simple pour l'Alaska</title>
-    <?php echo $this->Html->js("jquery-3.2.0.min"); ?>
-    <?php echo $this->Html->css("bootstrap.min"); ?>
-    <?php echo $this->Html->css("blog"); ?>
+    <?= $this->Html->js("jquery-3.2.0.min"); ?>
+    <?= $this->Html->css("bootstrap.min"); ?>
+    <?= $this->Html->css("blog"); ?>
 </head>
 
 <body>
@@ -36,12 +36,12 @@
             </div>
         </div>
     </nav>
-    <?php echo $contents ?>
+    <?= $contents ?>
     <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Revalia" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
-    <?php echo $this->Html->js("jquery.fadethis"); ?>
-    <?php echo $this->Html->js("bootstrap.min"); ?>
-    <?php echo $this->Html->js("tinymce.min"); ?>
+    <?= $this->Html->js("jquery.fadethis"); ?>
+    <?= $this->Html->js("bootstrap.min"); ?>
+    <?= $this->Html->js("tinymce.min"); ?>
     <script>
     tinymce.init({
         selector: 'textarea',

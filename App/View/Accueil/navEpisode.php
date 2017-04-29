@@ -1,10 +1,10 @@
-<div id="summary_<?php echo $last->id?>">
+<div id="summary_<?= $last->id?>">
     <div class="row episode">
         <div class="col-xs-4 episode-head">
-            <h2><?php echo $last->title ?></h2>
+            <h2><?= $last->title ?></h2>
         </div>
         <div class="col-xs-12 box">
-            <?php echo $last->content ?>
+            <?= $last->content ?>
         </div>
     </div>
     <div class="row">
@@ -13,7 +13,7 @@
             <h2 class="text-left">
 				<span class="glyphicon glyphicon-backward"></span>
 					<a href="#" id="prev">
-						<?php echo $navEpisode['previous']->title ?>
+						<?= $navEpisode['previous']->title ?>
 					</a>
 			</h2>
             <?php endif; ?>
@@ -22,7 +22,7 @@
             <?php if($navEpisode['next']): ?>
             <h2 class="text-left">
 				<a href="#" id="next"">
-					<?php echo $navEpisode['next']->title ?>
+					<?= $navEpisode['next']->title ?>
 					<span class="glyphicon glyphicon-forward"></span>
 				</a>
 			</h2>
@@ -41,33 +41,11 @@ $('#prev').click(function() {
         type: 'POST',
         data: {
             ajax: true,
-            id: "<?php echo $navEpisode['previous']->id ?>",
+            id: "<?= $navEpisode['previous']->id ?>",
         },
         success: function(json) {
-            //data = JSON.parse(json);
-            console.log(json);
         }
     });
 });
 
-function navSummary() {
-    alert($(this).id);
-    /*
-    function scrollEpisode(direction){
-    $.ajax({
-    	url : '/blogjf/episode/getEpisodes',
-    	type : 'POST',
-    	data : {
-    			ajax: true,
-    			offset: offset,
-    			direction: direction
-    	},
-    	success : function(json){
-    		data = JSON.parse(json);
-    		updateScrollEpisode(data);
-    	}
-    });
-    }
-    */
-}
 </script>

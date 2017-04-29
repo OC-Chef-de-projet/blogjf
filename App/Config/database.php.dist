@@ -4,10 +4,11 @@
  * Accès à la base de données
  */
 $database = [
-		'host' => 'localhost',
-		'login' => 'user',
-		'password' => 'usersecretpassword',
-		'database' => 'blog'
+		'host' 		=> '127.0.0.1',
+		'login' 	=> 'user',
+		'password' 	=> 'usersecretpassword',
+		'database' 	=> 'blog',
+		'port'		=> 3306
 ];
 
 
