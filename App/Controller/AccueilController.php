@@ -31,12 +31,13 @@ class AccueilController extends \Core\Controller
 
 		// Premier episode, c'est pour le lien
 		// vers le premier chapitre du roman
-		$first = $ep->getEpisodeTitle('first');
+		$first = $ep->getEpisodeTitle(EpisodeController::FIRST);
 		$this->set('first',$first);
 
-		// résumé d'un épisode
+		// Résumé d'un épisode, le dernier su aucun
+		// épisode n'est demandé
 		if(!$episode_id){
-			$episode_id = 'last';
+			$episode_id = EpisodeController::LAST;
 		}
 
 		$summary = $ep->getEpisodeSummary($episode_id);
