@@ -1,6 +1,6 @@
 <?php namespace Core;
 
-class Model extends \stdClass
+abstract class Model extends \stdClass
 {
 
 	private $db = null;

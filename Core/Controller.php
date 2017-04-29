@@ -1,7 +1,7 @@
 <?php
 namespace Core;
 
-class Controller extends \Core\View
+abstract class Controller extends \Core\View
 {
 	public $noModel = false;
 	protected $twig;
