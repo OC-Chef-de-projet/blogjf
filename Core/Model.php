@@ -11,8 +11,13 @@ class Model extends \stdClass
 	private function connect(){
 		if(is_null($this->db)){
 
+			$port = Config::getInstance()->db('port');
+			if(!empty($port)){
+				$port = ';port='.$port;
+			}
+
 			$db = new \PDO(	'mysql:dbname='.Config::getInstance()->db('database').';'.
-							'host='.Config::getInstance()->db('host'),
+							'host='.Config::getInstance()->db('host').$port,
 								Config::getInstance()->db('login'),
 								Config::getInstance()->db('password'),
 								[
