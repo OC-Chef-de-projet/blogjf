@@ -2,8 +2,10 @@
 
 namespace Core;
 
-
-class View extends \stdClass
+/**
+ * Vue
+ */
+abstract class View extends \stdClass
 {
 
 	public $vars = [];
@@ -16,16 +18,22 @@ class View extends \stdClass
 	}
 
 
+	/**
+	 * Affichage HTML
+	 * @param  string  $template Nom du template
+	 * @param  boolean $layout   Utilisation d'un layout
+	 * @return [type]            [description]
+	 */
 	public function display($template = '',$layout = true){
 
-		$trace = debug_backtrace(); 
+		$trace = debug_backtrace();
 
 		// Utilise le nom de la function appelante pour 
 		// le nom de fichier
 		if(empty($template)){
 			$template = $trace[1]['function'];
 		}
-		
+
 		$this->viewAction = $template;
 
         $model = get_called_class();
@@ -44,15 +52,53 @@ class View extends \stdClass
 		ob_end_flush();
 	}
 
+	/**
+	 * Assigne le nom du layout de base
+	 * @param  [type] $layout nom du layout
+	 * @return [type]         [description]
+	 */
 	public function layout($layout){
 		$this->layout = $layout;
 	}
 
+	/**
+	 * Assigne des variables
+	 * @param string $name  Nom de la variable
+	 * @param object $value valeur sous forme d'Objet, tableau, string,...
+	 */
 	public function set($name,$value){
 		$this->vars[$name] = $value;
 	}
 
-	public function get($model,$file){
+	/**
+	 * Formatage de la date
+	 * @param  string $date
+	 * @return string
+	 */
+	public function dateFormat($date){
+		if(empty($date))return;
+		return(date('d/m/Y H:i:s',strtotime($date)));
+	}
+
+	/**
+	 * Redirection
+	 * @param  string $controller
+	 * @param  string $action
+	 * @param  array  $params
+	 */
+	public function redirect($controller,$action = '',$params = array()){
+		define('BASE','blogjf');
+		$url = '/'.BASE.'/'.$controller.'/'.$action;
+		header("Location: $url");
+	}
+
+	/**
+	 * Traitement de la vue
+	 * @param  string $model
+	 * @param  string $file
+	 * @return string
+	 */
+	private function get($model,$file){
 		ob_start();
 		foreach($this->vars as $key => $var){
 			$$key = $var;
@@ -60,17 +106,6 @@ class View extends \stdClass
 		$model = preg_replace('#\\\#',DS,$model);
 		include(ROOT.'/App/View/'.$model.'/'.$file.'.php');
 		return ob_get_clean();
-	}
-
-	public function dateFormat($date){
-		if(empty($date))return;
-		return(date('d/m/Y H:i:s',strtotime($date)));
-	}
-
-	public function redirect($controller,$action = '',$params = array()){
-		define('BASE','blogjf');
-		$url = '/'.BASE.'/'.$controller.'/'.$action;
-		header("Location: $url");
 	}
 }
 
