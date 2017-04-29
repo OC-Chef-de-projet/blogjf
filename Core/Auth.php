@@ -11,25 +11,35 @@ class Auth
 	/**
 	 * Authentification
 	 * @param  string $username Login
-	 * @param  tring $password  Mot de passe
+	 * @param  string $password  Mot de passe
 	 * @return boolean
 	 */
 	public function login($username, $password){
 
-		// Cryptage du mot de passe
-		$salt = \Core\Config::getInstance()->config('salt');
-		$pwd = md5($salt.$password);
+		// Recherche l'utilisateur
 		$options = [
+			'type' => 'one',
 			'conditions' => [
-				'login' => $username,
-				'password' => $pwd
+				'login' => $username
 			]
 		];
-		// Recherche l'utilisateur
 		$user = $this->User->find($options);
 		if(empty($user)){
-			// Pas nécessaire
-			Session::getInstance()->write('isConnected',false);	
+			Session::getInstance()->write('isConnected',false);
+			return false;
+		}
+
+		// Vérifie que le mot de passe saisi est le même que celui stocké
+		$hash = $user->password;
+		// Mot de passe correct
+		if (password_verify($password, $hash)) {
+    		// Recalcul du hash si nécessaire
+    		if (password_needs_rehash($hash, PASSWORD_DEFAULT,[ 'cost' => 12])) {
+        		$user->password = password_hash($password, PASSWORD_DEFAULT,[ 'cost' => 12]);
+        		$this->User->save($user);
+    		}
+		} else {
+			Session::getInstance()->write('isConnected',false);
 			return false;
 		}
 		Session::getInstance()->write('isConnected',true);
