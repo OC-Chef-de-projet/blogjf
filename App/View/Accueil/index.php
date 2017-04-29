@@ -3,14 +3,13 @@
 -->
 <section class="presentation" id="presentation">
     <div class="container-fluid">
-        <!-- Titre du blog et nom de l'auteur -->
         <div class="row">
             <div class="col-xs-12">
                 <h1>Billet simple pour<br/>l'Alaska</h1>
                 <h2><a href="/blogjf/Biographie" data-toggle="tooltip" title="Biographie de l'auteur">Un livre de Jean Forteroche</a></h2>
             </div>
         </div>
-        <!-- sidebar -->
+
         <div class="col-xs-12 col-sm-4 col-md-3 sidebar-offcanvas" id="sidebar" role="navigation">
             <!-- 5 derniers épisodes -->
             <div class="row">
@@ -33,9 +32,7 @@
 					</h2>
                 </div>
             </div>
-            <!-- Fin entete episode -->
             <div class="row">
-                <!-- Titre des episode -->
                 <div class="col-xs-12 episode-nav">
                     <div id="navChap">
                         <?php foreach($episodes['episodes'] as $episode) { ?>
@@ -50,7 +47,6 @@
                     </div>
                 </div>
             </div>
-            <!-- 5 derniers episodes -->
             <p></p>
             <div class="row">
                 <div class="col-xs-12 episode-head">
@@ -79,8 +75,7 @@
                 </div>
             </div>
         </div>
-        <!--/sidebar-->
-        <!-- Résumé dernier episode -->
+
         <div class="col-xs-12 col-sm-7 col-sm-offset-1 col-md-8 col-sm-offset-1">
             <div class="row episode">
                 <div class="col-xs-12 col-sm-8 col-md-4 episode-head">
@@ -119,71 +114,6 @@
         </div>
     </div>
 </section>
-<!--
-	
-<section class="biographie" id="biographie">
-	<div class="container">
-		<div class="row" style="margin-top:15px">
-			<div class="card-reverse col-xs-3">
-				<div class="chapter-head">
-					<h2>Jean Forteroche</h2>
-				</div>
-				<div class="box">
-					<p>Jean Forteroche, né le 20 avril 1998 à Paris 14e, est un écrivain français, connu également sous les pseudonymes de Shorinji Kempo, Lautréamont et Carelman.</p>
-
-				</div>
-			</div>
-
-			<div class="card slide-left col-xs-3" data-plugin-options='{"speed":1000, "distance":50}'>
-				<img src="/blogjf/App/www/books/book_1.jpg" alt="Le Crime d'une nuit" width="200px"/>
-			</div>
-
-			<div class="card slide-right col-xs-3" data-plugin-options='{"speed":1000, "distance":50}'>
-				<img src="/blogjf/App/www/books/book_2.jpg" alt="La Coalition" width="200px"/>
-			</div>
-
-			<div class="card slide-left col-xs-3" data-plugin-options='{"speed":1000, "distance":50}'>
-				<img src="/blogjf/App/www/books/book_3.jpg" alt="Journal écrit en hiver" width="200px"/>
-			</div>
-
-			<div class="card slide-right col-xs-3" data-plugin-options='{"speed":1000, "distance":40}'>
-				<img src="/blogjf/App/www/books/book_4.jpg" alt="La Dernière Nuit" width="200px"/>
-			</div>
-
-			<div class="card-reverse slide-right col-xs-3" data-plugin-options='{"speed":1000, "distance":40}'>
-				<h4>Lire</h4>
-				<a href="#presentation" class="btn btn-small btn-primary btnlink">
-					Billet simple pour l'Alaska
-				</a>
-				<img src="/blogjf/App/www/img/alaska.jpg" alt="nouveau" width="200px"/>
-				<p></p>
-				<a href="#projet" class="btn btn-small btn-primary btnlink">Voir le projet</a>
-			</div>
-
-		</div>
-	</div>
-</section>
-
-		<section class="projet" id="projet">
-			<div class="box">
-				<h3>Le projet</h3>
-			</div>
-			<div class="box2">
-				<p>
-				<?php echo $project->content ?>
-				</p>
-			</div>
-
-			<div class="navbar navbar-bottom">
-    			<div class="navbar-inner">
-      				<div class="pull-right">
-        				<a href="#presentation" class="btn btn-small btn-primary btnlink">Lire Billet simple pour l'Alaska </a>
-      				</div>
-    			</div>
-  			</div>
-		</section>
-</div>
--->
 <script type="text/javascript">
 var offset = 0;
 
@@ -192,7 +122,6 @@ $(document).ready(function() {
     $("#nextEpisode").addClass('inactive');
 });
 
-// Episodes suivants
 $("#prevEpisode").click(function() {
     if ($(this).hasClass('inactive')) {
         // Don't it's inactive
@@ -201,7 +130,6 @@ $("#prevEpisode").click(function() {
     }
 });
 
-// Episodes précédents
 $("#nextEpisode").click(function() {
     if ($(this).hasClass('inactive')) {
         // Don't it's inactive
@@ -210,7 +138,6 @@ $("#nextEpisode").click(function() {
     }
 });
 
-// Défilement des Episodes
 function scrollEpisode(direction) {
     $.ajax({
         url: '/blogjf/episode/getEpisodesTitle',

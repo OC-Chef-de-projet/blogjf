@@ -42,30 +42,10 @@
             <div class="card slide-left col-xs-12 col-sm-3" data-plugin-options='{"speed":1000, "distance":100}'>
                 <img src="/blogjf/App/www/books/book_3.jpg" alt="Journal écrit en hiver" width="200px" />
             </div>
-            
+
             <div class="card slide-left col-xs-12 col-sm-3" data-plugin-options='{"speed":1000, "distance":10}'>
                 <img src="/blogjf/App/www/books/book_4.jpg" alt="La Dernière Nuit" width="200px" />
             </div>
-            
-            <!--
-            <div class="col-xs-offset-2 slide-right col-xs-8 col-sm-3" data-plugin-options='{"speed":1000, "distance":40}'>
-                <div class="row card-reverse">
-                    <div>
-                        <a href="/blogjf" class="btn btn-small btn-primary btnlink">
-						Billet simple pour l'Alaska
-						</a>
-                        <p></p>
-                    </div>
-                    <div>
-                        <img src="/blogjf/App/www/img/alaska.jpg" alt="nouveau" width="100%" />
-                        <p></p>
-                    </div>
-                    <div>
-                        <a href="/blogjf/projet" class="btn btn-small btn-primary btnlink">Voir le projet</a>
-                    </div>
-                </div>
-            </div>
-            -->
         </div>
     </div>
 </section>

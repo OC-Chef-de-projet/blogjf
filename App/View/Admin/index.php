@@ -127,7 +127,6 @@ function remove(comment_id) {
         },
         success: function(json) {
             data = JSON.parse(json);
-            //alert(data.message);
             location.reload();
         }
     });

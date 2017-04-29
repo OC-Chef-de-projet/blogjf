@@ -1,7 +1,6 @@
 <div class="modal fade" id="modal-comment" tabindex="-1" role="dialog" aria-labelledby="modal-commentLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <!-- Modal Header -->
             <div class="modal-header chapter-head">
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
@@ -11,7 +10,6 @@
                     <span class="glyphicon glyphicon-comment"></span>&nbsp;Laisser un commentaire
                 </h4>
             </div>
-            <!-- Modal Body -->
             <div class="modal-body">
                 <form class="form-horizontal" role="form" id="CommentForm">
                     <div class="form-group">
@@ -35,7 +33,6 @@
                     </div>
                 </form>
             </div>
-            <!-- Modal Footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">
                     Annuler
@@ -66,7 +63,6 @@
             </div>
         </div>
         <br>
-        <!-- Commentaires -->
         <?php if(count($comments)){ ?>
         <div class="row episode-head">
             <div class="col-xs-12 col-sm-6">
@@ -145,9 +141,6 @@ $(function() {
     });
 });
 
-/*
- * Ajout de la valeur du parent
- */
 $('#modal-comment').on('show.bs.modal', function(e) {
     var parent = $(e.relatedTarget).data('parent');
     $("#parent").val(parent);

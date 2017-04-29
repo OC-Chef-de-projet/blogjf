@@ -44,30 +44,8 @@ $('#prev').click(function() {
             id: "<?php echo $navEpisode['previous']->id ?>",
         },
         success: function(json) {
-            //data = JSON.parse(json);
-            console.log(json);
         }
     });
 });
 
-function navSummary() {
-    alert($(this).id);
-    /*
-    function scrollEpisode(direction){
-    $.ajax({
-    	url : '/blogjf/episode/getEpisodes',
-    	type : 'POST',
-    	data : {
-    			ajax: true,
-    			offset: offset,
-    			direction: direction
-    	},
-    	success : function(json){
-    		data = JSON.parse(json);
-    		updateScrollEpisode(data);
-    	}
-    });
-    }
-    */
-}
 </script>
