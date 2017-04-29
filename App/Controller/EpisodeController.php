@@ -8,6 +8,11 @@ use \App\Controller;
 class EpisodeController extends \Core\Controller
 {
 
+	// Utiliser pour rechercher le premier ou
+	// le dernier épisode
+	const FIRST = -1;
+	const LAST  = -2;
+
 	/**
 	 * Affichage de la liste des episodes
 	 * cette page n'est accessible qu'en mode
@@ -224,8 +229,8 @@ class EpisodeController extends \Core\Controller
 			]
 		];
 		switch($episode){
-			case 'first' : $options['order'] = [ 'id' => 'asc'];break;
-			case 'last' : $options['order'] = [ 'id' => 'desc'];break;
+			case self::FIRST : $options['order'] = [ 'id' => 'asc'];break;
+			case self::LAST : $options['order'] = [ 'id' => 'desc'];break;
 			default : $options['conditions'] = [ 'id' => $episode];break;
 		}
 
@@ -242,8 +247,8 @@ class EpisodeController extends \Core\Controller
 			'limit' => 1,
 		];
 		switch($episode){
-			case 'first' : $options['order'] = [ 'id' => 'asc'];break;
-			case 'last' : $options['order'] = [ 'id' => 'desc'];break;
+			case self::FIRST : $options['order'] = [ 'id' => 'asc'];break;
+			case self::LAST : $options['order'] = [ 'id' => 'desc'];break;
 			default : $options['conditions'] = [ 'id' => $episode];break;
 		}
 
