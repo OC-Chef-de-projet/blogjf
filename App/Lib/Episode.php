@@ -74,12 +74,9 @@ class Episode
      * Identifiant et titres des episode par groupe
      * de X episodes
      *
-     * @param integer $offset    Position
-     * @param string  $direction Sens (asc ou desc)
-     *
      * @return string liste des titres
      */
-    public function getListOfTitles($offset = 0, $direction = '')
+    public function getListOfTitles()
     {
 
         $response = array();

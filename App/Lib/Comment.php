@@ -122,11 +122,9 @@ class Comment
     /**
      * Approbation d'un commentaire
      *
-     * @param integer $id Identifiant du commentaire
-     *
      * @return string Message d'état
      */
-    public function approve($id = 0)
+    public function approve()
     {
         $message = "Impossible de changer l'état de ce commentaire";
         try {
