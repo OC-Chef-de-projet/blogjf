@@ -91,7 +91,7 @@ abstract class View extends \stdClass
      */
     public function layout($layout)
     {
-        $this->layout = $layout;
+        $this->_layout = $layout;
     }
 
     /**
