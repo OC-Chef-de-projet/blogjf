@@ -1,25 +1,44 @@
 <?php
+/**
+ * Commentaires métier
+ *
+ * PHP Version 5.6
+ *
+ * @category App
+ * @package  App\Lib
+ * @author   Pierre-Sylvain Augereau <ps.augereau@gmail.com>
+ * @license  http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link     https://blogjs.lignedemire.eu
+ */
 namespace App\Lib;
-
-use \App\Controller;
+use \App\Model\Comment as _Comment;
+use \Core\Mail;
 
 /**
- * Methodes métier pour les commentaires
+ * Classe métier pour les commentaires
+ *
+ * @category App
+ * @package  App\Lib
+ * @author   Pierre-Sylvain Augereau <ps.augereau@gmail.com>
+ * @license  http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link     https://blogjs.lignedemire.eu
  */
 class Comment
 {
-    private $model = null;
+    /** @var class Modèle du métier */
+    private $_model = null;
 
     /**
      * __construct
      */
     public function __construct()
     {
-        $this->model = new \App\Model\Comment();
+        $this->_model = new _Comment();
     }
 
     /**
      * Retourne les commentaires abusifs
+     *
      * @return array
      */
     public function getAbuseComments()
@@ -32,11 +51,12 @@ class Comment
                 'id' => 'desc'
             ]
         ];
-        return $this->model->find($options);
+        return $this->_model->find($options);
     }
 
     /**
      * Retourne les commentaires qui ne sont pas abusifs
+     *
      * @return array
      */
     public function getValidComments()
@@ -49,19 +69,20 @@ class Comment
                 'id' => 'desc'
             ]
         ];
-        return $this->model->find($options);
+        return $this->_model->find($options);
     }
 
     /**
      * Recherche les commentaires d'un episode
      *
-     * @param  int  $episode_id     Identifiant episode
-     * @param  boolean $unset_children Suppresion des enfants dans le tableau de résultat
+     * @param int     $episode_id     Identifiant episode
+     * @param boolean $unset_children Suppresion des enfants dans le tableau de résultat
+     *
      * @return array                   Tableau de commentaires
      */
     public function findAllWithChildren($episode_id, $unset_children = true)
     {
-        $comments = $comments_by_id = $this->findAllById($episode_id);
+        $comments = $comments_by_id = $this->_findAllById($episode_id);
 
         foreach ($comments as $id => $comment) {
             if ($comment->parent_id != 0) {
@@ -78,17 +99,18 @@ class Comment
      /**
      * Recherche des commentaires par episode
      *
-     * @param  int $episode_id  Identifiant episode
-     * @return array            Tableau des commentaires
+     * @param int $episode_id Identifiant episode
+     *
+     * @return array Tableau des commentaires
      */
-    private function findAllById($episode_id)
+    private function _findAllById($episode_id)
     {
         $options = [
             'conditions' => [
                 'episode_id' => $episode_id
             ]
         ];
-        $comments = $this->model->find($options);
+        $comments = $this->_model->find($options);
         $comments_by_id = [];
         foreach ($comments as $comment) {
             $comments_by_id[$comment->id] = $comment;
@@ -99,8 +121,10 @@ class Comment
 
     /**
      * Approbation d'un commentaire
-     * @param  integer $id Identifiant du commentaire
-     * @return string      Message d'état
+     *
+     * @param integer $id Identifiant du commentaire
+     *
+     * @return string Message d'état
      */
     public function approve($id = 0)
     {
@@ -109,7 +133,7 @@ class Comment
             if (isset($_POST['ajax']) && $_POST['ajax']) {
                 $data['id'] = $_POST['comment_id'];
                 $data['abuse'] = 0;
-                $this->model->save($data);
+                $this->_model->save($data);
                 $message = 'Commentaire approuvé';
             }
         } catch (\Exception $ex) {
@@ -121,8 +145,10 @@ class Comment
 
     /**
      * Supprime un commentaire et tous ceux en dessous
-     * @param  integer $id Identifiant commentaire
-     * @return string      Message au format json
+     *
+     * @param array $data Données
+     *
+     * @return array Message
      */
     public function remove($data)
     {
@@ -137,14 +163,14 @@ class Comment
                         'id' => $data['comment_id']
                     ]
                 ];
-                $comment = $this->model->find($options);
+                $comment = $this->_model->find($options);
                 if (!$comment) {
                     throw new \Exception("Impossible de trouver le commentaire", 9000);
                 }
                 $parent_id = $comment->parent_id;
                 $depth = $comment->depth;
 
-                $this->model->delete($data['comment_id']);
+                $this->_model->delete($data['comment_id']);
 
                 // Mis à jour des commentaires en dessous pour
                 // les remonter d'un niveau
@@ -154,7 +180,7 @@ class Comment
                     ':depth' => $depth,
                     ':parent_id' => $data['comment_id']
                 ];
-                $this->model->sql($sql, $keys);
+                $this->_model->sql($sql, $keys);
                 $message = 'Commentaire supprimé';
             }
         } catch (\Exception $ex) {
@@ -165,7 +191,10 @@ class Comment
 
     /**
      * Signale un commentaire abusif
-     * @param array $data
+     *
+     * @param array $data Données
+     *
+     * @return array Message
      */
     public function setAbuse($data)
     {
@@ -173,18 +202,20 @@ class Comment
         try {
             $message = 'Nous ne pouvons transmettre votre demande à l\'administrateur';
             if (isset($data['ajax']) && $data['ajax'] && isset($data['comment_id']) && !empty($data['comment_id'])) {
-                    $setData['abuse'] = true;
-                    $setData['id'] = $data['comment_id'];
-                    $abuseComment = $this->model->find([
+                $setData['abuse'] = true;
+                $setData['id'] = $data['comment_id'];
+                $abuseComment = $this->_model->find(
+                    [
                         'type' => 'one',
                         'conditions' => [
-                            'id' => $setData['id']
-                        ]
-                    ]);
-                    if ($this->model->save($setData)) {
-                        \Core\Mail::sendAbuseNotification($abuseComment);
-                        $message = 'Votre demande a été transmise à l\'administrateur du site';
-                    }
+                        'id' => $setData['id']
+                    ]
+                ]
+                );
+                if ($this->_model->save($setData)) {
+                    Mail::sendAbuseNotification($abuseComment);
+                    $message = 'Votre demande a été transmise à l\'administrateur du site';
+                }
             }
         } catch (\Exception $ex) {
             $message = $ex->getMessage();
@@ -194,7 +225,10 @@ class Comment
 
     /**
      * Ajout d'un commentaire
-     * @param array $data
+     *
+     * @param array $data données
+     *
+     * @return array Message
      */
     public function add($data)
     {
@@ -210,12 +244,12 @@ class Comment
                     ]
                 ];
                 if (isset($data['parent_id'])) {
-                    $c = $this->model->find($options);
+                    $c = $this->_model->find($options);
                     if (isset($c->depth)) {
                         $data['depth'] = $c->depth + 1;
                     }
                 }
-                $this->model->save($data);
+                $this->_model->save($data);
                 $message = 'Merci pour votre commentaire';
             }
         } catch (\Exception $ex) {
