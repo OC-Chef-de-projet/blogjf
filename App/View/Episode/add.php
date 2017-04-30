@@ -11,7 +11,7 @@
     </div>
     <br>
     <div class="row">
-        <?php $this->Form()->create('Episode'); ?>
+        <?= $this->Form()->create('Episode'); ?>
         <div class="form-group">
             <?= $this->Form()->input([ 'field' => 'title', 'label' => 'Titre', 'type' => 'text', 'class' => 'form-control']); ?>
         </div>

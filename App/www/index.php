@@ -38,10 +38,10 @@ Core\Config::getInstance();
 
 // Definition des objets métier
 Core\Service::getInstance()['Episode'] = function ($c) {
-    return new App\Lib\Episode();
+    return new \App\Lib\Episode();
 };
 Core\Service::getInstance()['Comment'] = function ($c) {
-    return new App\Lib\Comment();
+    return new \App\Lib\Comment();
 };
 
 $router = new Core\Router($_GET['url']);
