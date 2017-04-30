@@ -26,14 +26,14 @@ use \Core\Mail;
 class Comment
 {
     /** @var class Modèle du métier */
-    private $_model = null;
+    private $model = null;
 
     /**
      * __construct
      */
     public function __construct()
     {
-        $this->_model = new _Comment();
+        $this->model = new _Comment();
     }
 
     /**
@@ -51,7 +51,7 @@ class Comment
                 'id' => 'desc'
             ]
         ];
-        return $this->_model->find($options);
+        return $this->model->find($options);
     }
 
     /**
@@ -69,7 +69,7 @@ class Comment
                 'id' => 'desc'
             ]
         ];
-        return $this->_model->find($options);
+        return $this->model->find($options);
     }
 
     /**
@@ -82,7 +82,7 @@ class Comment
      */
     public function findAllWithChildren($episode_id, $unset_children = true)
     {
-        $comments = $comments_by_id = $this->_findAllById($episode_id);
+        $comments = $comments_by_id = $this->findAllById($episode_id);
 
         foreach ($comments as $id => $comment) {
             if ($comment->parent_id != 0) {
@@ -103,14 +103,14 @@ class Comment
      *
      * @return array Tableau des commentaires
      */
-    private function _findAllById($episode_id)
+    private function findAllById($episode_id)
     {
         $options = [
             'conditions' => [
                 'episode_id' => $episode_id
             ]
         ];
-        $comments = $this->_model->find($options);
+        $comments = $this->model->find($options);
         $comments_by_id = [];
         foreach ($comments as $comment) {
             $comments_by_id[$comment->id] = $comment;
@@ -131,7 +131,7 @@ class Comment
             if (isset($_POST['ajax']) && $_POST['ajax']) {
                 $data['id'] = $_POST['comment_id'];
                 $data['abuse'] = 0;
-                $this->_model->save($data);
+                $this->model->save($data);
                 $message = 'Commentaire approuvé';
             }
         } catch (\Exception $ex) {
@@ -161,14 +161,14 @@ class Comment
                         'id' => $data['comment_id']
                     ]
                 ];
-                $comment = $this->_model->find($options);
+                $comment = $this->model->find($options);
                 if (!$comment) {
                     throw new \Exception("Impossible de trouver le commentaire", 9000);
                 }
                 $parent_id = $comment->parent_id;
                 $depth = $comment->depth;
 
-                $this->_model->delete($data['comment_id']);
+                $this->model->delete($data['comment_id']);
 
                 // Mis à jour des commentaires en dessous pour
                 // les remonter d'un niveau
@@ -178,7 +178,7 @@ class Comment
                     ':depth' => $depth,
                     ':parent_id' => $data['comment_id']
                 ];
-                $this->_model->sql($sql, $keys);
+                $this->model->sql($sql, $keys);
                 $message = 'Commentaire supprimé';
             }
         } catch (\Exception $ex) {
@@ -202,7 +202,7 @@ class Comment
             if (isset($data['ajax']) && $data['ajax'] && isset($data['comment_id']) && !empty($data['comment_id'])) {
                 $setData['abuse'] = true;
                 $setData['id'] = $data['comment_id'];
-                $abuseComment = $this->_model->find(
+                $abuseComment = $this->model->find(
                     [
                         'type' => 'one',
                         'conditions' => [
@@ -210,7 +210,7 @@ class Comment
                     ]
                 ]
                 );
-                if ($this->_model->save($setData)) {
+                if ($this->model->save($setData)) {
                     Mail::sendAbuseNotification($abuseComment);
                     $message = 'Votre demande a été transmise à l\'administrateur du site';
                 }
@@ -242,12 +242,12 @@ class Comment
                     ]
                 ];
                 if (isset($data['parent_id'])) {
-                    $c = $this->_model->find($options);
+                    $c = $this->model->find($options);
                     if (isset($c->depth)) {
                         $data['depth'] = $c->depth + 1;
                     }
                 }
-                $this->_model->save($data);
+                $this->model->save($data);
                 $message = 'Merci pour votre commentaire';
             }
         } catch (\Exception $ex) {

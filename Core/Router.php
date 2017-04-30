@@ -23,8 +23,8 @@ namespace Core;
  */
 class Router
 {
-    private $_url;
-    private $_routes = array();
+    private $url;
+    private $routes = array();
 
     /**
      * __construct
@@ -33,7 +33,7 @@ class Router
      */
     public function __construct($url)
     {
-        $this->_url = $url;
+        $this->url = $url;
     }
 
 
@@ -47,7 +47,7 @@ class Router
      */
     public function get($path,$callable)
     {
-        $this->_routes['GET'][] = new Route($path, $callable);
+        $this->routes['GET'][] = new Route($path, $callable);
     }
 
     /**
@@ -60,7 +60,7 @@ class Router
      */
     public function post($path,$callable)
     {
-        $this->_routes['POST'][] = new Route($path, $callable);
+        $this->routes['POST'][] = new Route($path, $callable);
     }
 
     /**
@@ -73,11 +73,11 @@ class Router
         // Vérifie que la méthode (GET/POST) existe bien
         // dans le tableau des routes
         $method = $_SERVER['REQUEST_METHOD'];
-        if (!isset($this->_routes[$method ])) {
-            throw new \Exception("Méthode $method inconnue ".$this->_url, 9000);
+        if (!isset($this->routes[$method ])) {
+            throw new \Exception("Méthode $method inconnue ".$this->url, 9000);
         }
-        foreach ($this->_routes[$method] as $route) {
-            if ($route->match($this->_url)) {
+        foreach ($this->routes[$method] as $route) {
+            if ($route->match($this->url)) {
                 return $route->call();
             }
         }

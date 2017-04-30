@@ -24,7 +24,7 @@ namespace Core;
 class Session
 {
     /** @var class instance */
-    private static $_instance;
+    private static $instance;
 
     /**
      * Constructeur
@@ -41,10 +41,10 @@ class Session
      */
     public static function getInstance()
     {
-        if (!self::$_instance) {
-            self::$_instance = new Session();
+        if (!self::$instance) {
+            self::$instance = new Session();
         }
-        return self::$_instance;
+        return self::$instance;
     }
 
 

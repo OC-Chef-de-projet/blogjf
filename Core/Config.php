@@ -29,10 +29,10 @@ class Config
 {
 
     /** @var array Tableau des paramètres */
-    private $_settings = array();
+    private $settings = array();
 
     /** @var Config instance */
-    private static $_instance =  null;
+    private static $instance =  null;
 
     /**
      * Retourne l'instance de la classe
@@ -42,10 +42,10 @@ class Config
     public static function getInstance()
     {
 
-        if (is_null(self::$_instance)) {
-            self::$_instance = new Config();
+        if (is_null(self::$instance)) {
+            self::$instance = new Config();
         }
-        return self::$_instance;
+        return self::$instance;
     }
 
     /**
@@ -55,10 +55,10 @@ class Config
     public function __construct()
     {
         include ROOT.'/'.APP_DIR.'/Config/database.php';
-        $this->_settings['database'] = $database;
+        $this->settings['database'] = $database;
 
         include ROOT.'/'.APP_DIR.'/Config/config.php';
-        $this->_settings['config'] = $config;
+        $this->settings['config'] = $config;
     }
 
     /**
@@ -70,8 +70,8 @@ class Config
      */
     public function db($key)
     {
-        if (isset($this->_settings['database'][$key])) {
-            return $this->_settings['database'][$key];
+        if (isset($this->settings['database'][$key])) {
+            return $this->settings['database'][$key];
         }
         return null;
     }
@@ -85,8 +85,8 @@ class Config
      */
     public function config($key)
     {
-        if (isset($this->_settings['config'][$key])) {
-            return $this->_settings['config'][$key];
+        if (isset($this->settings['config'][$key])) {
+            return $this->settings['config'][$key];
         }
         return null;
     }
