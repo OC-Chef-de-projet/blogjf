@@ -1,102 +1,138 @@
 <?php
+/**
+ * Contrôleur pour les épisodes
+ *
+ * PHP Version 5.6
+ *
+ * @category App
+ * @package  App\Controller
+ * @author   Pierre-Sylvain Augereau <ps.augereau@gmail.com>
+ * @license  http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link     https://blogjs.lignedemire.eu
+ */
 namespace App\Controller;
+use \Core\Controller;
+use \Core\Service;
+use \Core\Config;
 
 /**
- * Les episodes du livre
+ * Episodes
+ *
+ * @category App
+ * @package  App\Controller
+ * @author   Pierre-Sylvain Augereau <ps.augereau@gmail.com>
+ * @license  http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link     https://blogjs.lignedemire.eu/admin
  */
-class EpisodeController extends \Core\Controller
+class EpisodeController extends Controller
 {
+    const FIRST = -1;   // Premier épisode
+    const LAST  = -2;   // Dernier épisode
 
-	// Utiliser pour rechercher le premier ou
-	// le dernier épisode
-	const FIRST = -1;
-	const LAST  = -2;
-
-	const PREV = -1;
-	const NEXT = 1;
+    const PREV = -1;    // Episode précédent
+    const NEXT = 1;     // Episode suvant
 
 
-	/**
-	 * Affichage de la liste des episodes
-	 * cette page n'est accessible qu'en mode
-	 * administrateur
-	 */
-	public function index(){
-		$this->restricted();
-		$this->layout('admin');
-		$this->set('episodes',\Core\Service::getInstance()['Episode']->getAll());
-		$this->display('index');
-	}
+    /**
+     * Affichage de la liste des épisodes
+     *
+     * @return void
+     */
+    public function index()
+    {
+        $this->restricted();
+        $this->layout('admin');
+        $this->set('episodes', Service::getInstance()['Episode']->getAll());
+        $this->display('index');
+    }
 
-	/**
-	 * Ajout d'un episode
-	 * Mode administrateur uniquement
-	 */
-	public function add(){
-		$this->restricted();
-		$this->layout('admin');
-		$errorMessage = '';
+    /**
+     * Ajout d'un episode
+     *
+     * @return void
+     */
+    public function add()
+    {
+        $this->restricted();
+        $this->layout('admin');
+        $errorMessage = '';
 
-		if(isset($_POST) && !empty($_POST)){
-			if(!$this->Episode->save($_POST)){
-				$errorMessage = 'Impossible de créer cet épisode';
-			}
-		}
-		$this->set('errorMessage',$errorMessage);
-		$this->display();
-	}
+        if (isset($_POST) && !empty($_POST)) {
+            if (!$this->Episode->save($_POST)) {
+                $errorMessage = 'Impossible de créer cet épisode';
+            }
+        }
+        $this->set('errorMessage', $errorMessage);
+        $this->display();
+    }
 
-	/**
-	 * Modification d'un episode
-	 * Mode administrateur uniquement
-	 * @param  integer $id Identifiant episode
-	 * @return void
-	 */
-	public function edit($id = 0){
-		$this->restricted();
-		$this->layout('admin');
+    /**
+     * Modification d'un episode
+     *
+     * @param integer $id Identifiant episode
+     *
+     * @return void
+     */
+    public function edit($id = 0)
+    {
+        $this->restricted();
+        $this->layout('admin');
 
-		// Enregistrement des données postées
-		if(isset($_POST) && !empty($_POST)){
-			$episode = $_POST;
-			$episode['id'] = $id;
-			$episode = $this->Episode->save($episode);
-		}
-		$this->set('episode',\Core\Service::getInstance()['Episode']->getById($id));
-		$this->display();
-	}
+        // Enregistrement des données postées
+        if (isset($_POST) && !empty($_POST)) {
+            $episode = $_POST;
+            $episode['id'] = $id;
+            $episode = $this->Episode->save($episode);
+        }
+        $this->set('episode', Service::getInstance()['Episode']->getById($id));
+        $this->display();
+    }
 
-	public function getListOfTitles($offset = 0,$direction = ''){
-		return \Core\Service::getInstance()['Episode']->getListOfTitles($offset,$direction);
-	}
+    /**
+     * Liste d'un groupe de titre
+     *
+     * @param integer $offset    Position dans la table
+     * @param string  $direction Sens(précédent, suivant)
+     *
+     * @return array             tableau des titres
+     */
+    public function getListOfTitles($offset = 0,$direction = '')
+    {
+        return Service::getInstance()['Episode']->getListOfTitles($offset, $direction);
+    }
 
-	/**
-	 * Visualisation d'un episode et
-	 * des commentaires associés
-	 *
-	 * @param  integer $id Identifiant de l'episode
-	 * @return void
-	 */
-	public function view($id = 0,$focus = ''){
+    /**
+     * Visualisation d'un episode et
+     * des commentaires associés
+     *
+     * @param integer $id    Identifiant de l'épisode
+     * @param integer $focus Identifiant du commentaire pointé
+     *
+     * @return void
+     */
+    public function view($id = 0,$focus = '')
+    {
 
-		$this->set('focus',$focus);
-		$this->set('episode',\Core\Service::getInstance()['Episode']->getById($id));
-		$this->set('comments',\Core\Service::getInstance()['Comment']->findAllWithChildren($id));
-		$this->set('maxDepth',\Core\Config::getInstance()->config('maxDepth'));
-		$this->display();
-	}
+        $this->set('focus', $focus);
+        $this->set('episode', Service::getInstance()['Episode']->getById($id));
+        $this->set('comments', Service::getInstance()['Comment']->findAllWithChildren($id));
+        $this->set('maxDepth', Config::getInstance()->config('maxDepth'));
+        $this->display();
+    }
 
 
-	/**
-	 * Suppression d'un episode
-	 * Mode administrateur uniquement
-	 * @param  integer $id Identifiant de l'episode
-	 * @return [type]      [description]
-	 */
-	public function delete($id = 0){
-		$this->restricted();
-		$this->Episode->delete($id);
-		$this->redirect('Episode','index',array());
-	}
+    /**
+     * Suppression d'un episode
+     *
+     * @param integer $id Identifiant de l'épisode
+     *
+     * @return [type]      [description]
+     */
+    public function delete($id = 0)
+    {
+        $this->restricted();
+        $this->Episode->delete($id);
+        $this->redirect('Episode', 'index', array());
+    }
 
 }

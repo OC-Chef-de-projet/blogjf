@@ -1,25 +1,39 @@
 <?php
+/**
+ * Biographie de l'auteur
+ *
+ * PHP Version 5.6
+ *
+ * @category App
+ * @package  App\Controller
+ * @author   Pierre-Sylvain Augereau <ps.augereau@gmail.com>
+ * @license  http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link     https://blogjs.lignedemire.eu
+ */
 namespace App\Controller;
+use \Core\Controller;
 
 /**
- * Page d'accueil du site
+ * Biographie de l'auteur
+ *
+ * @category App
+ * @package  App\Controller
+ * @author   Pierre-Sylvain Augereau <ps.augereau@gmail.com>
+ * @license  http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link     https://blogjs.lignedemire.eu/admin
  */
-class BiographieController extends \Core\Controller
+class BiographieController extends Controller
 {
-	public $noModel = true;	// pas de model de données
+    /** @var boolean Pas de modèle de données */
+    public $noModel = true;
 
-	/**
-	 * Biographie de Jean Forteroche
-	 */
-	public function index(){
-	// Affichage de la page
-		$this->display();
-	}
-
-
+    /**
+     * Page principale de la biographie
+     *
+     * @return void
+     */
+    public function index()
+    {
+        $this->display();
+    }
 }
-
-
-
-
-

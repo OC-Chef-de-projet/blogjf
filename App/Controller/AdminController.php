@@ -1,30 +1,49 @@
 <?php
+/**
+ * Administration du site
+ *
+ * PHP Version 5.6
+ *
+ * @category App
+ * @package  App\Controller
+ * @author   Pierre-Sylvain Augereau <ps.augereau@gmail.com>
+ * @license  http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link     https://blogjs.lignedemire.eu
+ */
 namespace App\Controller;
-use \App\Controller;
+use \Core\Controller;
+use \Core\Service;
 
 /**
- * Page principale d'adminsirration
- * Gestion des épisodes et des commentaires
- * Mode administrateur uniquement
+ * Administration du site
+ *
+ * @category App
+ * @package  App\Controller
+ * @author   Pierre-Sylvain Augereau <ps.augereau@gmail.com>
+ * @license  http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link     https://blogjs.lignedemire.eu/admin
  */
-class AdminController extends \Core\Controller
+class AdminController extends Controller
 {
 
-	public $noModel = true;
+    /** @var boolean Pas de modèle de données */
+    public $noModel = true;
 
-	/**
-	 * Page principale
-	 * @return void
-	 */
-	public function index(){
+    /**
+     * Page principale d'administration
+     *
+     * @return void
+     */
+    public function index()
+    {
 
-		$this->restricted();
-		$this->layout('admin');
+        $this->restricted();
+        $this->layout('admin');
 
-		$this->set('abuses',\Core\Service::getInstance()['Comment']->getAbuseComments());
-		$this->set('comments',\Core\Service::getInstance()['Comment']->getValidComments());
+        $this->set('abuses', Service::getInstance()['Comment']->getAbuseComments());
+        $this->set('comments', Service::getInstance()['Comment']->getValidComments());
 
-		$this->display();
-	}
+        $this->display();
+    }
 }
 
