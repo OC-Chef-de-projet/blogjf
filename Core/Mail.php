@@ -43,7 +43,7 @@ class Mail extends \stdClass
 
 		$message = 'Le commentaire de '.$comment->author.' ('.$comment->email.') a été signalé comme abusif<br>';
 		$message .= $comment->content;
-		$message .= '<br><p>Pour le valider rendez-vous dans votre <a href="https://239.ip-79-137-39.eu/blogjf/Admin">interface d\'administration</a></p><br>';
+		$message .= '<br><p>Pour le valider rendez-vous dans votre <a href="https://blogjf.lignedemire.eu/Admin">interface d\'administration</a></p><br>';
 		$mail->Body = $message;
 		if(!$mail->send()) {
 			return false;

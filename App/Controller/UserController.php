@@ -15,7 +15,7 @@ class UserController extends \Core\Controller
 		$error = '';
 		if(isset($_POST['login']) && isset($_POST['password'])){
 			if(\Core\Auth::login($_POST['login'],$_POST['password'])){
-				header('Location: /blogjf/Admin');
+				header('Location: /Admin');
 				$error = '';
 			} else {
 				$error = 'Identifiant ou mot de passe incorrect';
@@ -31,7 +31,7 @@ class UserController extends \Core\Controller
 	 */
 	public function logout(){
 		\Core\Auth::logout();
-		header('Location: /blogjf');
+		header('Location: /');
 	}
 }
 

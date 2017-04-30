@@ -37,7 +37,7 @@ $('#next').click(function() {
 
 $('#prev').click(function() {
     $.ajax({
-        url: '/blogjf/episode/navEpisode',
+        url: '/episode/navEpisode',
         type: 'POST',
         data: {
             ajax: true,
