@@ -87,8 +87,7 @@ abstract class View extends \stdClass
 	 * @param  array  $params
 	 */
 	public function redirect($controller,$action = '',$params = array()){
-		define('BASE','blogjf');
-		$url = '/'.BASE.'/'.$controller.'/'.$action;
+		$url = '/'.$controller.'/'.$action;
 		header("Location: $url");
 	}
 

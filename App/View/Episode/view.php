@@ -47,13 +47,13 @@
 <section class="presentation" id="presentation">
     <div class="container">
         <h1>Billet simple pour<br/>l'Alaska</h1>
-        <h2><a href="/blogjf/#biographie" data-toggle="tooltip" title="Biographie de l'auteur">Un livre de Jean Forteroche</a></h2>
+        <h2><a href="/#biographie" data-toggle="tooltip" title="Biographie de l'auteur">Un livre de Jean Forteroche</a></h2>
         <hr>
         <div class="row episode">
             <div class="col-xs-12 col-sm-6 col-md-4 episode-head">
                 <h2>
             <?= $episode->title ?>
-            <a href="/blogjf/">
+            <a href="/">
               <span class="pull-right glyphicon glyphicon-th-list" data-toggle="tooltip" title="Sommaire"></span>
             </a>
           </h2>
@@ -149,7 +149,7 @@ $('#modal-comment').on('show.bs.modal', function(e) {
 
 function addComment() {
     $.ajax({
-        url: '/blogjf/Commenter',
+        url: '/Commenter',
         type: 'POST',
         data: {
             ajax: true,
@@ -170,7 +170,7 @@ function addComment() {
 
 function setAbuse(comment_id) {
     $.ajax({
-        url: '/blogjf/CommentaireAbusif',
+        url: '/CommentaireAbusif',
         type: 'POST',
         data: {
             ajax: true,

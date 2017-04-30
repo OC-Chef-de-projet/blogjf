@@ -36,7 +36,7 @@ abstract class Controller extends \Core\View
 	 */
 	public function restricted(){
 		if($this->Auth->isConnected() === false){
-			header("Location: /blogjf/Login");
+			header("Location: /Login");
 		}
 	}
 

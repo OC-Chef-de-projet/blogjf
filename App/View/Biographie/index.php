@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <h1>Billet simple pour<br/>l'Alaska</h1>
-                <h2><a href="/blogjf/Biographie" data-toggle="tooltip" title="Biographie de l'auteur">Un livre de Jean Forteroche</a></h2>
+                <h2><a href="/Biographie" data-toggle="tooltip" title="Biographie de l'auteur">Un livre de Jean Forteroche</a></h2>
             </div>
         </div>
 
@@ -20,13 +20,13 @@
                     <h2>Billet simple pour l'Alaska</h2>
                 </div>
                 <div class="episode-box">
-                    <img src="/blogjf/App/www/img/alaska.jpg" alt="nouveau" width="100%" />
+                    <img src="/App/www/img/alaska.jpg" alt="nouveau" width="100%" />
                     <div class="row">
                         <div class="col-xs-6">
-                        <a href="/blogjf/projet" class="btn btn-small btn-primary btnlink">Voir le projet</a>
+                        <a href="/projet" class="btn btn-small btn-primary btnlink">Voir le projet</a>
                         </div>
                         <div class="col-xs-6 text-right">
-                            <a href="/blogjf" class="btn btn-small btn-primary btnlink">
+                            <a href="" class="btn btn-small btn-primary btnlink">
                             Lire
                             </a>
                         </div>
@@ -34,17 +34,17 @@
                 </div>
             </div>
             <div class="card slide-left col-xs-12 col-sm-3" data-plugin-options='{"speed":1000, "distance":100}'>
-                <img src="/blogjf/App/www/books/book_1.jpg" alt="Le Crime d'une nuit" width="200px" />
+                <img src="/App/www/books/book_1.jpg" alt="Le Crime d'une nuit" width="200px" />
             </div>
             <div class="card slide-right col-xs-12 col-sm-3" data-plugin-options='{"speed":1000, "distance":40}'>
-                <img src="/blogjf/App/www/books/book_2.jpg" alt="La Coalition" width="200px" />
+                <img src="/App/www/books/book_2.jpg" alt="La Coalition" width="200px" />
             </div>
             <div class="card slide-left col-xs-12 col-sm-3" data-plugin-options='{"speed":1000, "distance":100}'>
-                <img src="/blogjf/App/www/books/book_3.jpg" alt="Journal écrit en hiver" width="200px" />
+                <img src="/App/www/books/book_3.jpg" alt="Journal écrit en hiver" width="200px" />
             </div>
 
             <div class="card slide-left col-xs-12 col-sm-3" data-plugin-options='{"speed":1000, "distance":10}'>
-                <img src="/blogjf/App/www/books/book_4.jpg" alt="La Dernière Nuit" width="200px" />
+                <img src="/App/www/books/book_4.jpg" alt="La Dernière Nuit" width="200px" />
             </div>
         </div>
     </div>

@@ -20,7 +20,7 @@ h2 {
                 <?php foreach($abuses as $abuse): ?>
                 <tr>
                     <td>
-                        <a href="/blogjf/episode/view/<?= $abuse->episode_id ?>/<?= $abuse->id ?>/#cmt-<?= $abuse->id ?>">
+                        <a href="/episode/view/<?= $abuse->episode_id ?>/<?= $abuse->id ?>/#cmt-<?= $abuse->id ?>">
                             <?= $abuse->id ?>
                         </a>
                     </td>
@@ -62,7 +62,7 @@ h2 {
                 <?php foreach($comments as $comment): ?>
                 <tr>
                     <td>
-                        <a href="/blogjf/episode/view/<?= $comment->episode_id ?>/<?= $comment->id ?>/#cmt-<?= $comment->id ?>">
+                        <a href="/episode/view/<?= $comment->episode_id ?>/<?= $comment->id ?>/#cmt-<?= $comment->id ?>">
                             <?= $comment->id ?>
                         </a>
                     </td>
@@ -103,7 +103,7 @@ $(function() {
 
 function approve(comment_id) {
     $.ajax({
-        url: '/blogjf/approveComment',
+        url: '/approveComment',
         type: 'POST',
         data: {
             ajax: true,
@@ -119,7 +119,7 @@ function approve(comment_id) {
 
 function remove(comment_id) {
     $.ajax({
-        url: '/blogjf/removeComment',
+        url: '/removeComment',
         type: 'POST',
         data: {
             ajax: true,
