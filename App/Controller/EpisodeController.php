@@ -187,7 +187,30 @@ class EpisodeController extends \Core\Controller
 				'title'
 			]
 		];
+
+
 		$episodes = $this->Episode->find($options);
+
+		// Traitement du cas ou le nombre d'enregistrements retournés est inférieur
+		// au nombre d'enregistrement à afficher. Dans ce cas on décale l'offset pour
+		// que le nombdre d'enregistrements retournés soit égal au nombre d'enregistrement
+		// à afficher.
+		$count = count($episodes);
+		if($count < \Core\Config::getInstance()->config('episodeLimit') && $count > 0){
+			$offset = $offset - ($count + 1);
+			$options = [
+				'limit' => \Core\Config::getInstance()->config('episodeLimit'),
+				'offset' => $offset,
+				'order' => [
+					'id' => 'desc'
+				],
+				'field' => [
+					'id',
+					'title'
+				]
+			];
+			$episodes = $this->Episode->find($options);
+		}
 
 		$response['offset'] = $offset;
 		$response['episodes'] = $episodes;

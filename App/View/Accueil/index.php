@@ -33,8 +33,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 episode-nav">
-                    <div id="navChap">
+                <div class="col-xs-12 episode-nav" id="navTitle">
                         <?php foreach($episodes['episodes'] as $episode) { ?>
                         <div>
                             <h2 class="text-left">
@@ -44,7 +43,6 @@
 							</h2>
                         </div>
                         <?php } ?>
-                    </div>
                 </div>
             </div>
             <p></p>
@@ -140,7 +138,11 @@ $("#nextEpisode").click(function() {
 
 function scrollEpisode(direction) {
     $.ajax({
+<<<<<<< HEAD
+        url: '/devblog/episode/getEpisodesTitle',
+=======
         url: '/episode/getEpisodesTitle',
+>>>>>>> domain
         type: 'POST',
         data: {
             ajax: true,
@@ -176,15 +178,20 @@ function updateScrollEpisode(data) {
 
     var html = "";
     for (var i = 0; i < data.episodes.length; i++) {
+<<<<<<< HEAD
+        html += "<h2 class='text-left'>";
+        html += "<a href=\"/blogjf/Episode/view/" + data.episodes[i].id + "\">";
+=======
         html += "<h2 class='navChap'>";
         html += "<a href=\"/Episode/view/" + data.episodes[i].id + "\">";
+>>>>>>> domain
         html += data.episodes[i].title;
         html + "</a>";
         html += "</h2>";
     }
     if (html) {
-        $("#navEpisode").html("");
-        $("#navEpisode").html(html);
+        $("#navTitle").html("");
+        $("#navTitle").html(html);
     }
 }
 </script>

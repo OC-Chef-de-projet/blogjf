@@ -158,7 +158,7 @@ abstract class Model extends \stdClass
 			}
 
 			$table = strtolower($model);
-			$sql = "SELECT {$fields} FROM `{$table}` WHERE {$w} {$order} {$offset} {$limit}";
+			$sql = "SELECT {$fields} FROM `{$table}` WHERE {$w} {$order} {$limit} {$offset} ";
 			$sth = $this->db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
 			$sth->execute($args);
 

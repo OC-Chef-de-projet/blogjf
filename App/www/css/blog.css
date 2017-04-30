@@ -19,6 +19,10 @@ html {
 		border-radius: 0 !important;
 }
 
+.inactive {
+	opacity: 0.1;
+}
+
 .vertical-center {
 	min-height: 100%;     /* Pour la compatibilité avec les navigateurs */
 	min-height: 100vh; 

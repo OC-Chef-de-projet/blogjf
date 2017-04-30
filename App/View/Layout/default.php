@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="utf-8">
@@ -19,15 +19,6 @@
     <?= $this->Html->js("jquery.fadethis"); ?>
     <?= $this->Html->js("bootstrap.min"); ?>
     <?= $this->Html->js("tinymce.min"); ?>
-    <script>
-    tinymce.init({
-        selector: ".tiny",
-        themes: "modern"
-    });
-    </script>
-    <script>
-    $(window).fadeThis();
-    </script>
 </body>
 
 </html>
