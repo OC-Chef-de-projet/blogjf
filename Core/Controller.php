@@ -5,11 +5,10 @@ use Pimple\Container;
 abstract class Controller extends \Core\View
 {
 	public $noModel = false;
-	private $container = null;
+	public $container = null;
 
 
 	public function __construct(){
-
 
 		$this->container = new Container();
 
@@ -47,7 +46,6 @@ abstract class Controller extends \Core\View
 		return $this->container['auth'];
 	}
 
-
 	/**
 	 * Défini une méthode réservée à ceux qui sont
 	 * connectés.
@@ -55,7 +53,7 @@ abstract class Controller extends \Core\View
 	 * redirection vers User->login()
 	 */
 	public function restricted(){
-		if($this->Auth->isConnected() === false){
+		if($this->container['auth']->isConnected() === false){
 			header("Location: /Login");
 		}
 	}

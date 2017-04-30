@@ -19,26 +19,12 @@ class AdminController extends \Core\Controller
 	public function index(){
 
 		$this->restricted();
-
 		$this->layout('admin');
 
-		// Chargement de la liste des comentaires
-		$CommentController = new CommentController('Comment');
-		$commentList = $CommentController->getComments();
+		$this->set('abuses',\Core\Service::getInstance()['Comment']->getAbuseComments());
+		$this->set('comments',\Core\Service::getInstance()['Comment']->getValidComments());
 
-		$abuses = array();
-		$comments = array();
-		foreach($commentList as $comment){
-			if($comment->abuse == 1){
-				$abuses[] = $comment;
-			} else {
-				$comments[] = $comment;
-			}
-		}
-		$this->set('abuses',$abuses); // Commentaires signalés comme abusif
-		$this->set('comments',$comments); // Les autres
-
-		$this->display('index');
+		$this->display();
 	}
 }
 

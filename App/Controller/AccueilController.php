@@ -1,6 +1,5 @@
 <?php
 namespace App\Controller;
-use \App\Controller;
 
 /**
  * Page d'accueil du site
@@ -19,33 +18,17 @@ class AccueilController extends \Core\Controller
 		$project = $prj->getPage(1);
 		$this->set('project',$project);
 
-
-		// Episodes
-		$ep = new EpisodeController();
-
-
 		// Liste des titres de X derniers episodes
-		$episodes = $ep->getEpisodesTitle();
-		$this->set('episodes',$episodes);
+		$this->set('episodes',\Core\Service::getInstance()['Episode']->getListOfTitles());
 
+		// Titre du premier épisode
+		$this->set('first',\Core\Service::getInstance()['Episode']->getTitle(EpisodeController::FIRST));
 
-		// Premier episode, c'est pour le lien
-		// vers le premier chapitre du roman
-		$first = $ep->getEpisodeTitle(EpisodeController::FIRST);
-		$this->set('first',$first);
+		// Résumé de l'épisode
+		$this->set('summary',\Core\Service::getInstance()['Episode']->getSummary($episode_id));
 
-		// Résumé d'un épisode, le dernier su aucun
-		// épisode n'est demandé
-		if(!$episode_id){
-			$episode_id = EpisodeController::LAST;
-		}
-
-		$summary = $ep->getEpisodeSummary($episode_id);
-		$this->set('summary',$summary);
-
-		// Navigation dans les titres des épisodes
-		$navEpisode = $ep->navEpisode($summary->id);
-		$this->set('navEpisode',$navEpisode);
+		// Navigation dans les épisodes
+		$this->set('navEpisode',\Core\Service::getInstance()['Episode']->getPrevAndNextTitle($episode_id));
 
 		// Affichage de la page
 		$this->display();

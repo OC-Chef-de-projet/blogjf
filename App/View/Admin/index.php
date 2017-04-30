@@ -111,7 +111,7 @@ function approve(comment_id) {
         },
         success: function(json) {
             data = JSON.parse(json);
-            //alert(data.message);
+            alert(data.message);
             location.reload();
         }
     });
@@ -127,6 +127,7 @@ function remove(comment_id) {
         },
         success: function(json) {
             data = JSON.parse(json);
+            alert(data.message);
             location.reload();
         }
     });

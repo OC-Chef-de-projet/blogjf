@@ -39,6 +39,7 @@ abstract class View extends \stdClass
         $model = get_called_class();
         $model = preg_replace('/Controller/','',$model);
         $model = preg_replace('#App\\\#','',$model);
+		$model = preg_replace('#\\\#','',$model);
 
 		ob_start();
 		foreach($this->vars as $key => $var){
@@ -52,6 +53,14 @@ abstract class View extends \stdClass
 		ob_end_flush();
 	}
 
+	public function displayAjax(){
+		ob_start();
+		foreach($this->vars as $key => $var){
+			$$key = $var;
+		}
+		include_once(ROOT.'/App/View/Layout/json.php');
+		ob_end_flush();
+	}
 	/**
 	 * Assigne le nom du layout de base
 	 * @param  [type] $layout nom du layout
@@ -88,6 +97,7 @@ abstract class View extends \stdClass
 	 */
 	public function redirect($controller,$action = '',$params = array()){
 		$url = '/'.$controller.'/'.$action;
+		error_log($url);
 		header("Location: $url");
 	}
 

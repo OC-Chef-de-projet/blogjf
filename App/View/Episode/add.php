@@ -11,14 +11,14 @@
     </div>
     <br>
     <div class="row">
-        <?php $this->Form->create('Episode'); ?>
+        <?php $this->Form()->create('Episode'); ?>
         <div class="form-group">
-            <?= $this->Form->input([ 'field' => 'title', 'label' => 'Titre', 'type' => 'text', 'class' => 'form-control']); ?>
+            <?= $this->Form()->input([ 'field' => 'title', 'label' => 'Titre', 'type' => 'text', 'class' => 'form-control']); ?>
         </div>
         <div class="form-group">
-            <?= $this->Form->input([ 'field' => 'content', 'label' => 'Contenu', 'type' => 'textarea' ]); ?>
+            <?= $this->Form()->input([ 'field' => 'content', 'label' => 'Contenu', 'type' => 'textarea' ]); ?>
         </div>
-        <?= $this->Form->end(['value' => 'Envoyer', 'class' => 'btn btn-primary' ]) ?>
+        <?= $this->Form()->end(['value' => 'Envoyer', 'class' => 'btn btn-primary' ]) ?>
     </div>
 </div>
 <script type="text/javascript">

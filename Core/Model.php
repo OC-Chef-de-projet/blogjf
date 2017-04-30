@@ -117,6 +117,9 @@ abstract class Model extends \stdClass
 					if(preg_match('/>/',$key)){
 						$operation = '';
 					} 
+					if(preg_match('/!/',$key)){
+						$operation = '';
+					} 
 					$where[] = ' '.$key.$operation.$value;
 				}
 			}

@@ -29,15 +29,15 @@ class Html
 		echo '<a href="'.$url.'">'.$text.'</a>';
 	}
 
-	public function rewrite($string){
+	public static function rewrite($string){
         $speciaux = array('?','!','@','#','%','&amp;','*','(',')','[',']','=','+',' ',';',':','\'','.','_');
         $string = str_replace($speciaux, "-", $string);
-        $string = $this->removeAccents($string);
+        $string = self::removeAccents($string);
         $string = strtolower(strip_tags($string));
         return $string;
 
 	}
-	private function removeAccents($str, $encoding='utf-8') {
+	private static function removeAccents($str, $encoding='utf-8') {
 		// transformer les caractères accentués en entités HTML
 		$str = htmlentities($str, ENT_NOQUOTES, $encoding);
 

@@ -12,6 +12,7 @@ class UserController extends \Core\Controller
 	 * @return void
 	 */
 	public function login(){
+
 		$error = '';
 		if(isset($_POST['login']) && isset($_POST['password'])){
 			if(\Core\Auth::login($_POST['login'],$_POST['password'])){

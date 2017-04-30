@@ -9,7 +9,7 @@ class BiographieController extends \Core\Controller
 	public $noModel = true;	// pas de model de données
 
 	/**
-	 * Biographoe de Jean Forteroche
+	 * Biographie de Jean Forteroche
 	 */
 	public function index(){
 	// Affichage de la page

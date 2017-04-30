@@ -91,7 +91,7 @@
                 <div class="col-xs-6">
                     <?php if($navEpisode['previous']): ?>
                     <h2 class="text-left episode-nav">
-							<a href="/resume/<?= $navEpisode['previous']->id ?>">
+							<a href="/resume/<?= $navEpisode['previous']->id.'-'.$navEpisode['previous']->title ?>">
 							<span class="glyphicon glyphicon-backward"></span>
 								<?= $navEpisode['previous']->title ?>
 							</a>
@@ -101,7 +101,7 @@
                 <div class="col-xs-6">
                     <?php if($navEpisode['next']): ?>
                     <h2 class="text-right episode-nav">
-						<a href="/resume/<?= $navEpisode['next']->id ?>">
+						<a href="/resume/<?= $navEpisode['next']->id.'-'.$navEpisode['next']->title ?>">
 							<?= $navEpisode['next']->title ?>
 							<span class="glyphicon glyphicon-forward"></span>
 						</a>
@@ -124,7 +124,7 @@ $("#prevEpisode").click(function() {
     if ($(this).hasClass('inactive')) {
         // Don't it's inactive
     } else {
-        scrollEpisode('prev');
+        scrollEpisode(<?= \App\Controller\EpisodeController::PREV?>);
     }
 });
 
@@ -132,13 +132,13 @@ $("#nextEpisode").click(function() {
     if ($(this).hasClass('inactive')) {
         // Don't it's inactive
     } else {
-        scrollEpisode('next');
+        scrollEpisode(<?= \App\Controller\EpisodeController::NEXT?>);
     }
 });
 
 function scrollEpisode(direction) {
     $.ajax({
-        url: '/episode/getEpisodesTitle',
+        url: '/Episode/getListOfTitles',
         type: 'POST',
         data: {
             ajax: true,
@@ -156,7 +156,6 @@ function scrollEpisode(direction) {
 
 
 function updateScrollEpisode(data) {
-
 
     if (data.isLast == 1) {
         $("#nextEpisode").addClass('inactive');
