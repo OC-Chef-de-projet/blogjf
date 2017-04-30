@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <h1>Billet simple pour<br/>l'Alaska</h1>
-                <h2><a href="/blogjf/Biographie" data-toggle="tooltip" title="Biographie de l'auteur">Un livre de Jean Forteroche</a></h2>
+                <h2><a href="/Biographie" data-toggle="tooltip" title="Biographie de l'auteur">Un livre de Jean Forteroche</a></h2>
             </div>
         </div>
 
@@ -38,7 +38,7 @@
                         <?php foreach($episodes['episodes'] as $episode) { ?>
                         <div>
                             <h2 class="text-left">
-								<a href="/blogjf/Episode/<?= $episode->id ?>-<?= $episode->url ?>">
+								<a href="/Episode/<?= $episode->id ?>-<?= $episode->url ?>">
 									<?= $episode->title ?>
 								</a>
 							</h2>
@@ -58,17 +58,17 @@
                     <div id="navChap">
                         <div>
                             <h2 class="text-left">
-								<a href="/blogjf/projet">Découvrir le projet</a>
+								<a href="/projet">Découvrir le projet</a>
 							</h2>
                         </div>
                         <div>
                             <h2 class="text-left">
-								<a href="/blogjf/biographie">Qui est Jean Forteroche ?</a>
+								<a href="/biographie">Qui est Jean Forteroche ?</a>
 							</h2>
                         </div>
                         <div>
                             <h2 class="text-left">
-								<a href="/blogjf/Episode/<?= $first->id ?>-<?= $first->url ?>">Commencer le roman</a>
+								<a href="/Episode/<?= $first->id ?>-<?= $first->url ?>">Commencer le roman</a>
 							</h2>
                         </div>
                     </div>
@@ -86,14 +86,14 @@
                 </div>
                 <div class="col-xs-4 col-sm-9 col-md-10 episode-box-fill">&nbsp;</div>
                 <div class="col-xs-8 col-sm-3 col-md-2 text-right episode-suite">
-                    <a href="/blogjf/Episode/<?= $summary->id ?>-<?= $summary->url ?>">Lire la suite</a>
+                    <a href="/Episode/<?= $summary->id ?>-<?= $summary->url ?>">Lire la suite</a>
                 </div>
             </div>
             <div class="row episode-nav">
                 <div class="col-xs-6">
                     <?php if($navEpisode['previous']): ?>
                     <h2 class="text-left episode-nav">
-							<a href="/blogjf/resume/<?= $navEpisode['previous']->id ?>">
+							<a href="/resume/<?= $navEpisode['previous']->id ?>">
 							<span class="glyphicon glyphicon-backward"></span>
 								<?= $navEpisode['previous']->title ?>
 							</a>
@@ -103,7 +103,7 @@
                 <div class="col-xs-6">
                     <?php if($navEpisode['next']): ?>
                     <h2 class="text-right episode-nav">
-						<a href="/blogjf/resume/<?= $navEpisode['next']->id ?>">
+						<a href="/resume/<?= $navEpisode['next']->id ?>">
 							<?= $navEpisode['next']->title ?>
 							<span class="glyphicon glyphicon-forward"></span>
 						</a>
@@ -140,7 +140,7 @@ $("#nextEpisode").click(function() {
 
 function scrollEpisode(direction) {
     $.ajax({
-        url: '/blogjf/episode/getEpisodesTitle',
+        url: '/episode/getEpisodesTitle',
         type: 'POST',
         data: {
             ajax: true,
@@ -177,7 +177,7 @@ function updateScrollEpisode(data) {
     var html = "";
     for (var i = 0; i < data.episodes.length; i++) {
         html += "<h2 class='navChap'>";
-        html += "<a href=\"/blogjf/Episode/view/" + data.episodes[i].id + "\">";
+        html += "<a href=\"/Episode/view/" + data.episodes[i].id + "\">";
         html += data.episodes[i].title;
         html + "</a>";
         html += "</h2>";

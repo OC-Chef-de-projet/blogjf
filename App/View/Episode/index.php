@@ -9,7 +9,7 @@
     <?php foreach($episodes as $episode){?>
     <tr>
         <td>
-            <?= $this->Html->link($episode->id,'/blogjf/episode/view/'.$episode->id) ?>
+            <?= $this->Html->link($episode->id,'/episode/view/'.$episode->id) ?>
         </td>
         <td>
             <?= $episode->title?>
@@ -21,8 +21,8 @@
             <?= $this->dateFormat($episode->modified);?>
         </td>
         <td>
-            <?= $this->Html->link('<span class="glyphicon glyphicon-edit"></span>' ,'/blogjf/episode/edit/'.$episode->id) ?>
-            <?= $this->Html->link('<span class="glyphicon glyphicon-trash"></span>' ,'/blogjf/episode/delete/'.$episode->id) ?>
+            <?= $this->Html->link('<span class="glyphicon glyphicon-edit"></span>' ,'/episode/edit/'.$episode->id) ?>
+            <?= $this->Html->link('<span class="glyphicon glyphicon-trash"></span>' ,'/episode/delete/'.$episode->id) ?>
         </td>
     </tr>
     <?php } ?>

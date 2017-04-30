@@ -26,12 +26,12 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/blogjf/Admin">Home</a></li>
-                    <li id="episode"><a href="/blogjf/episode">Episodes</a></li>
+                    <li class="active"><a href="/Admin">Home</a></li>
+                    <li id="episode"><a href="/episode">Episodes</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/blogjf/Episode/add">Ajouter un episode</a></li>
-                    <li><a href="/blogjf/Logout">Deconnexion</a></li>
+                    <li><a href="/Episode/add">Ajouter un episode</a></li>
+                    <li><a href="/Logout">Deconnexion</a></li>
                 </ul>
             </div>
         </div>
