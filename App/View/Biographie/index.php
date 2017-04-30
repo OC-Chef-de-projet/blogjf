@@ -26,7 +26,7 @@
                         <a href="/projet" class="btn btn-small btn-primary btnlink">Voir le projet</a>
                         </div>
                         <div class="col-xs-6 text-right">
-                            <a href="" class="btn btn-small btn-primary btnlink">
+                            <a href="/" class="btn btn-small btn-primary btnlink">
                             Lire
                             </a>
                         </div>

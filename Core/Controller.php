@@ -1,15 +1,27 @@
 <?php
 namespace Core;
+use Pimple\Container;
 
 abstract class Controller extends \Core\View
 {
 	public $noModel = false;
-	protected $twig;
-	public $Form;
-	public $HTML;
-	private $Auth;
+	private $container = null;
+
 
 	public function __construct(){
+
+
+		$this->container = new Container();
+
+		$this->container['html'] = function($c) {
+			return new Html();
+		};
+		$this->container['form'] = function($c) {
+			return new Form();
+		};
+		$this->container['auth'] = function($c) {
+			return new Auth();
+		};
 
 		// Nom du model qui est le même que
 		// le controler sans le namespace et le mot
@@ -23,10 +35,18 @@ abstract class Controller extends \Core\View
 			$modelClass = '\\App\\Model\\'.$model;
 			$this->{$model}  = new $modelClass();
 		}
-		$this->Form = new Form();
-		$this->Html = new Html();
-		$this->Auth = new Auth();
 	}
+
+	public function Html(){
+		return $this->container['html'];
+	}
+	public function Form(){
+		return $this->container['form'];
+	}
+	public function Auth(){
+		return $this->container['auth'];
+	}
+
 
 	/**
 	 * Défini une méthode réservée à ceux qui sont

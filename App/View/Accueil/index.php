@@ -175,7 +175,7 @@ function updateScrollEpisode(data) {
     var html = "";
     for (var i = 0; i < data.episodes.length; i++) {
         html += "<h2 class='text-left'>";
-        html += "<a href=\"/blogjf/Episode/view/" + data.episodes[i].id + "\">";
+        html += "<a href=\"/Episode/" + data.episodes[i].id + "-" + data.episodes[i].title + "\">";
         html += data.episodes[i].title;
         html + "</a>";
         html += "</h2>";

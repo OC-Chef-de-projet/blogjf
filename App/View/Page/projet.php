@@ -14,7 +14,7 @@
                     <?= $project->content ?>
                 </p>
                 <div class="text-right">
-                    <a href="" class="btn btn-small btn-primary btnlink">Accueil</a>
+                    <a href="/" class="btn btn-small btn-primary btnlink">Accueil</a>
                 </div>
             </div>
         </div>

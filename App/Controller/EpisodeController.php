@@ -141,7 +141,8 @@ class EpisodeController extends \Core\Controller
 		];
 
 		$episode = $this->Episode->find($options);
-		$episode->url = $this->Html->rewrite($episode->title);
+		$episode->url = $this->setHtml('rewrite',$episode->title);
+		error_log(print_r($episode,true));
 		return($episode);
 	}
 
@@ -231,7 +232,7 @@ class EpisodeController extends \Core\Controller
 
 		// URL rewriting
 		foreach($response['episodes'] as $episode){
-				$episode->url = $this->Html->rewrite($episode->title);
+			$episode->url = $this->Html()->rewrite($episode->title);
 		}
 
 		// En AJAX on retourne un JSON
@@ -259,7 +260,7 @@ class EpisodeController extends \Core\Controller
 
 		$episode = $this->Episode->find($options);
 		if($episode){
-			$episode->url = $this->Html->rewrite($episode->title);
+			$episode->url = $this->Html()->rewrite($episode->title);
 		}
 		return($episode);
 	}
@@ -277,7 +278,7 @@ class EpisodeController extends \Core\Controller
 
 		$episode = $this->Episode->find($options);
 		if($episode){
-			$episode->url = $this->Html->rewrite($episode->title);
+			$episode->url = $this->Html()->rewrite($episode->title);
 		}
 		return($episode);
 	}
@@ -310,7 +311,7 @@ class EpisodeController extends \Core\Controller
 		$prev_episode = $this->Episode->find($options);
 
 		if($prev_episode){
-			$prev_episode->url = $this->Html->rewrite($prev_episode->title);
+			$prev_episode->url = $this->Html()->rewrite($prev_episode->title);
 		}
 		$options = [
 			'type' => 'one',
@@ -328,7 +329,7 @@ class EpisodeController extends \Core\Controller
 		];
 		$next_episode = $this->Episode->find($options);
 		if($next_episode){
-			$next_episode->url = $this->Html->rewrite($next_episode->title);
+			$next_episode->url = $this->Html()->rewrite($next_episode->title);
 		}
 
 		$navEpisode = array(

@@ -2,7 +2,7 @@
 
 namespace Core;
 
-class Html extends View
+class Html
 {
 
 	public function __construct(){
