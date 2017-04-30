@@ -27,7 +27,7 @@ abstract class View extends \stdClass
     public $vars = [];
     public $viewAction = null;
 
-    private $_layout = 'default';
+    private $layout = 'default';
 
     /**
      * Affichage HTML
@@ -58,10 +58,10 @@ abstract class View extends \stdClass
         foreach ($this->vars as $key => $var) {
             $$key = $var;
         }
-        $contents = $this->_get($model, $template);
+        $contents = $this->get($model, $template);
         // Ajout de la template de base
         if ($layout === true) {
-            include_once ROOT.'/App/View/Layout/'.$this->_layout.'.php';
+            include_once ROOT.'/App/View/Layout/'.$this->layout.'.php';
         }
         ob_end_flush();
     }
@@ -91,7 +91,7 @@ abstract class View extends \stdClass
      */
     public function layout($layout)
     {
-        $this->_layout = $layout;
+        $this->layout = $layout;
     }
 
     /**
@@ -146,7 +146,7 @@ abstract class View extends \stdClass
      *
      * @return string
      */
-    private function _get($model,$file)
+    private function get($model,$file)
     {
         ob_start();
         foreach ($this->vars as $key => $var) {

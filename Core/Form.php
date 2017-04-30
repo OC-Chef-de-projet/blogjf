@@ -25,8 +25,8 @@ class Form extends View
 {
 
     public $viewAction;
-    private $_mode = 'index';
-    private $_model = null;
+    private $mode = 'index';
+    private $model = null;
 
     /**
      * __construct
@@ -35,7 +35,7 @@ class Form extends View
      */
     public function __construct($mode = 'index')
     {
-        $this->_mode = $mode;
+        $this->mode = $mode;
     }
 
     /**
@@ -50,14 +50,14 @@ class Form extends View
         $action = debug_backtrace()[2]['object']->viewAction;
 
         $html = '';
-        if ($this->_mode == 'index') {
+        if ($this->mode == 'index') {
             $url = $_SERVER['REQUEST_URI'];
             $html = '<form action="'.$url.'" id="'.$form.$action.'Form" method="POST" accept-charset="utf-8">'."\n";
         }
-        if ($this->_mode == 'rewrite') {
+        if ($this->mode == 'rewrite') {
             $html = '<form action="'.$form.'/'.$action.'" id="'.$form.$action.'Form" method="POST" accept-charset="utf-8">'."\n";
         }
-        $this->_model = $form;
+        $this->model = $form;
         return $html;
     }
 
@@ -72,7 +72,7 @@ class Form extends View
     {
         $html = '';
 
-        $id = $this->_model.ucwords($field['field']);
+        $id = $this->model.ucwords($field['field']);
 
         if (isset($field['label']) && !empty($field['label'])) {
             $html .= '<label for="'.$id.'">'.$field['label'].'</label>'."\n";

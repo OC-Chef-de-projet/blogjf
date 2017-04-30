@@ -24,14 +24,14 @@ namespace Core;
 abstract class Model extends \stdClass
 {
 
-    private $_db = null;
+    private $db = null;
 
     /**
      * __construct
      */
     public function __construct()
     {
-        $this->_connect();
+        $this->connect();
     }
 
     /**
@@ -39,9 +39,9 @@ abstract class Model extends \stdClass
      *
      * @return bool
      */
-    private function _connect()
+    private function connect()
     {
-        if (is_null($this->_db)) {
+        if (is_null($this->db)) {
 
             $port = Config::getInstance()->db('port');
             if (!empty($port)) {
@@ -60,7 +60,7 @@ abstract class Model extends \stdClass
                 ]
             );
             $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            $this->_db = $db;
+            $this->db = $db;
         }
         return true;
     }
@@ -75,11 +75,11 @@ abstract class Model extends \stdClass
     public function delete($pkey)
     {
         try {
-            $this->_connect();
+            $this->connect();
             $model = (new \ReflectionClass($this))->getShortName();
             $table = strtolower($model);
             $sql = "DELETE FROM `{$table}` WHERE id = ?";
-            $sth = $this->_db->prepare($sql);
+            $sth = $this->db->prepare($sql);
             $sth->execute(array($pkey));
         } catch (\Exception $ex){
             return false;
@@ -97,7 +97,7 @@ abstract class Model extends \stdClass
     public function count($options = array())
     {
         try {
-            $this->_connect();
+            $this->connect();
             $model = (new \ReflectionClass($this))->getShortName();
             $where = [];
             if (isset($options['conditions']) && !empty($options['conditions'])) {
@@ -130,7 +130,7 @@ abstract class Model extends \stdClass
 
             $table = strtolower($model);
             $sql = "SELECT count(*) as count FROM `{$table}` WHERE {$w} {$order} {$limit}";
-            $sth = $this->_db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+            $sth = $this->db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
             $sth->execute();
             $result = $sth->fetch();
             $count = $result->count;
@@ -151,7 +151,7 @@ abstract class Model extends \stdClass
     public function find($options = array())
     {
         try {
-            $this->_connect();
+            $this->connect();
             $model = (new \ReflectionClass($this))->getShortName();
             $where = [];
             if (isset($options['conditions']) && !empty($options['conditions'])) {
@@ -213,7 +213,7 @@ abstract class Model extends \stdClass
 
             $table = strtolower($model);
             $sql = "SELECT {$fields} FROM `{$table}` WHERE {$w} {$order} {$limit} {$offset} ";
-            $sth = $this->_db->prepare($sql);
+            $sth = $this->db->prepare($sql);
             $sth->execute($args);
 
             if (isset($options['type']) && $options['type'] == 'one') {
@@ -241,8 +241,8 @@ abstract class Model extends \stdClass
         }
 
         try {
-            $this->_connect();
-            $sth = $this->_db->prepare($sql);
+            $this->connect();
+            $sth = $this->db->prepare($sql);
             $sth->execute($args);
 
         }catch(\Exception $ex){
@@ -272,7 +272,7 @@ abstract class Model extends \stdClass
 
             $result = null; // valeur de retour
 
-            $this->_connect();
+            $this->connect();
 
 
             $model = (new \ReflectionClass($this))->getShortName();
@@ -288,7 +288,7 @@ abstract class Model extends \stdClass
                 $table,
                 'modified'
             ];
-            $sth = $this->_db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+            $sth = $this->db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
             $sth->execute($args);
 
             if ($sth->fetch()) {
@@ -303,7 +303,7 @@ abstract class Model extends \stdClass
                     $table,
                     'created'
                 ];
-                $sth = $this->_db->prepare($sql);
+                $sth = $this->db->prepare($sql);
                 $sth->execute($args);
                 if ($sth->fetch()) {
                     $field['created'] = date('Y-m-d H:i:s');
@@ -323,13 +323,13 @@ abstract class Model extends \stdClass
 
                 $sql = "INSERT INTO `{$table}` ({$keys}) VALUES ({$values});";
 
-                $sth = $this->_db->prepare($sql);
+                $sth = $this->db->prepare($sql);
                 $sth->execute($prepKeys);
 
                 // Retourne l'enregistrement
                 $sql = "SELECT * FROM `{$table}` WHERE id = ?";
-                $sth = $this->_db->prepare($sql);
-                $sth->execute(array($this->_db->lastInsertId()));
+                $sth = $this->db->prepare($sql);
+                $sth->execute(array($this->db->lastInsertId()));
                 $result = $sth->fetch();
             } else {
                 // UPDATE
@@ -340,11 +340,11 @@ abstract class Model extends \stdClass
                     $prepKeys[':'.$key] = $value;
                 }
                 $sql = "UPDATE `{$table}` SET ".trim($fields, ',')." WHERE `id` = :id";
-                $sth = $this->_db->prepare($sql);
+                $sth = $this->db->prepare($sql);
                 $sth->execute($prepKeys);
                 // Retourne l'enregistrement
                 $sql = "SELECT * FROM `{$table}` WHERE id = ?";
-                $sth = $this->_db->prepare($sql);
+                $sth = $this->db->prepare($sql);
                 $sth->execute(array($field['id']));
                 $result = $sth->fetch();
             }
