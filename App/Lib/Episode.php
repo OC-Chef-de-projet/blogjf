@@ -26,14 +26,14 @@ class Episode
 {
 
     /** @var class Modèle du métier */
-    private $_model = null;
+    private $model = null;
 
     /**
      * __construct
      */
     public function __construct()
     {
-        $this->_model = new _Episode();
+        $this->model = new _Episode();
     }
 
     /**
@@ -49,7 +49,7 @@ class Episode
                 'id' => 'desc'
             ]
         ];
-        return $this->_model->find($options);
+        return $this->model->find($options);
     }
 
     /**
@@ -67,7 +67,7 @@ class Episode
                 'id' => $id
             ]
         ];
-        return $this->_model->find($options);
+        return $this->model->find($options);
     }
 
     /**
@@ -78,7 +78,7 @@ class Episode
      */
     public function getListOfTitles()
     {
-
+        $offset = 0;
         $response = array();
         $limit = \Core\Config::getInstance()->config('episodeLimit');
         $response['isLast'] = 0;
@@ -120,7 +120,7 @@ class Episode
         ];
 
 
-        $episodes = $this->_model->find($options);
+        $episodes = $this->model->find($options);
 
         // Traitement du cas ou le nombre d'enregistrements retournés est inférieur
         // au nombre d'enregistrement à afficher. Dans ce cas on décale l'offset pour
@@ -140,7 +140,7 @@ class Episode
                     'title'
                 ]
             ];
-            $episodes = $this->_model->find($options);
+            $episodes = $this->model->find($options);
         }
 
         $response['offset'] = $offset;
@@ -154,7 +154,7 @@ class Episode
 
         // Détermine si l'on est sur le premier groupe
         // d'enregistrements
-        $count = $this->_model->count();
+        $count = $this->model->count();
         $calc = $count - $offset;
         if ($calc <= $limit) {
             $response['isFirst'] = 1;
@@ -202,7 +202,7 @@ class Episode
             break;
         }
 
-        $episode = $this->_model->find($options);
+        $episode = $this->model->find($options);
         if ($episode) {
             $episode->url = \Core\Html::rewrite($episode->title);
         }
@@ -240,7 +240,7 @@ class Episode
             break;
         }
 
-        $episode = $this->_model->find($options);
+        $episode = $this->model->find($options);
         if ($episode) {
             $episode->url = \Core\Html::rewrite($episode->title);
         }
@@ -281,7 +281,7 @@ class Episode
         }
 
 
-        $prev_episode = $this->_model->find($options);
+        $prev_episode = $this->model->find($options);
 
         if ($prev_episode) {
             $prev_episode->url = \Core\Html::rewrite($prev_episode->title);
@@ -300,7 +300,7 @@ class Episode
                 'title'
             ]
         ];
-        $next_episode = $this->_model->find($options);
+        $next_episode = $this->model->find($options);
         if ($next_episode) {
             $next_episode->url = \Core\Html::rewrite($next_episode->title);
         }

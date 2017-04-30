@@ -25,14 +25,14 @@ use Pimple\Container;
 class Service
 {
     /** @var class instance */
-    private static $_instance;
+    private static $instance;
 
     /**
      * Constructeur
      */
     public function __construct()
     {
-        $this->_instance = new Container();
+        $this->instance = new Container();
     }
 
     /**
@@ -42,10 +42,10 @@ class Service
      */
     public static function getInstance()
     {
-        if (!self::$_instance) {
-            self::$_instance = new Container();
+        if (!self::$instance) {
+            self::$instance = new Container();
         }
-        return self::$_instance;
+        return self::$instance;
     }
 
 }

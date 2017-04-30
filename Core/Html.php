@@ -23,14 +23,6 @@ namespace Core;
  */
 class Html
 {
-
-    /**
-     * __construct
-     */
-    public function __construct()
-    {
-    }
-
     /**
      * Ajout d'un fichier javascript
      *
@@ -89,7 +81,7 @@ class Html
     {
         $speciaux = array('?', '!', '@', '#', '%', '&amp;', '*', '(', ')', '[', ']', '=', '+', ' ', ';', ':', '\'', '.', '_');
         $string = str_replace($speciaux, "-", $string);
-        $string = self::_removeAccents($string);
+        $string = self::removeAccents($string);
         $string = strtolower(strip_tags($string));
         return $string;
     }
@@ -102,7 +94,7 @@ class Html
      *
      * @return string
      */
-    private static function _removeAccents($str, $encoding='utf-8')
+    private static function removeAccents($str, $encoding='utf-8')
     {
         // Transformer les caractères accentués en entités HTML
         $str = htmlentities($str, ENT_NOQUOTES, $encoding);
