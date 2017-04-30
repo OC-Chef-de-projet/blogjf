@@ -1,38 +1,62 @@
 <?php
+/**
+ * Accueil Contrôleur
+ *
+ * PHP Version 5.6
+ *
+ * @category App
+ * @package  App\Controller
+ * @author   Pierre-Sylvain Augereau <ps.augereau@gmail.com>
+ * @license  http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link     https://blogjs.lignedemire.eu
+ */
 namespace App\Controller;
+use \Core\Controller;
+use \Core\Service;
 
 /**
  * Page d'accueil du site
+ *
+ * @category App
+ * @package  App\Controller
+ * @author   Pierre-Sylvain Augereau <ps.augereau@gmail.com>
+ * @license  http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link     https://blogjs.lignedemire.eu
  */
-class AccueilController extends \Core\Controller
+class AccueilController extends Controller
 {
-	public $noModel = true;	// pas de model de données
+    /** @var boolean Pas de model de données */
+    public $noModel = true;
 
-	/**
-	 * Page d'accueil du site
-	 */
-	public function index($episode_id = 0){
+    /**
+     * Page principale du site
+     *
+     * @param integer $episode_id N° de l'épisode
+     *
+     * @return void
+     */
+    public function index($episode_id = 0)
+    {
+        // Le projet est une page
+        $prj = new PageController('Page');
+        $project = $prj->getPage(1);
+        $this->set('project', $project);
 
-		// Le projet est une page
-		$prj = new PageController('Page');
-		$project = $prj->getPage(1);
-		$this->set('project',$project);
+        // Liste des titres de X derniers episodes
+        $this->set('episodes', Service::getInstance()['Episode']->getListOfTitles());
 
-		// Liste des titres de X derniers episodes
-		$this->set('episodes',\Core\Service::getInstance()['Episode']->getListOfTitles());
+        // Titre du premier épisode
+        $this->set('first', Service::getInstance()['Episode']->getTitle(EpisodeController::FIRST));
 
-		// Titre du premier épisode
-		$this->set('first',\Core\Service::getInstance()['Episode']->getTitle(EpisodeController::FIRST));
+        // Résumé de l'épisode
+        $this->set('summary', Service::getInstance()['Episode']->getSummary($episode_id));
 
-		// Résumé de l'épisode
-		$this->set('summary',\Core\Service::getInstance()['Episode']->getSummary($episode_id));
+        // Navigation dans les épisodes
+        $this->set('navEpisode', Service::getInstance()['Episode']->getPrevAndNextTitle($episode_id));
 
-		// Navigation dans les épisodes
-		$this->set('navEpisode',\Core\Service::getInstance()['Episode']->getPrevAndNextTitle($episode_id));
-
-		// Affichage de la page
-		$this->display();
-	}
+        // Affichage de la page
+        $this->display();
+    }
 
 
 }

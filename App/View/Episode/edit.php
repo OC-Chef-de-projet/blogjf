@@ -9,7 +9,7 @@
     </div>
     <br>
     <div class="row">
-        <?php $this->Form()->create('episode'); ?>
+        <?= $this->Form()->create('episode'); ?>
         <div class="form-group">
             <?= $this->Form()->input([
 				'field' => 'title',

@@ -1,17 +1,27 @@
 <?php
+/**
+ * Modèle page
+ *
+ * PHP Version 5.6
+ *
+ * @category App
+ * @package  App\Model
+ * @author   Pierre-Sylvain Augereau <ps.augereau@gmail.com>
+ * @license  http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link     https://blogjs.lignedemire.eu
+ */
 namespace App\Model;
+use \Core\Model;
 
 /**
-	CREATE TABLE IF NOT EXISTS `page` (
-		`id` int(11) NOT NULL,
-		`content` text NOT NULL,
-		`created` date NOT NULL,
-		`modified` date NOT NULL
-	)
-*/
-
-class Page extends \Core\Model
+ * Définition de la table page
+ *
+ * @category App
+ * @package  App\Model
+ * @author   Pierre-Sylvain Augereau <ps.augereau@gmail.com>
+ * @license  http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link     https://blogjs.lignedemire.eu
+ */
+class Page extends Model
 {
-
-
 }
