@@ -21,42 +21,52 @@ Lors d'une première installation copier ces fichiers en **config.php** et **dat
 
 ### config.php
 	<?php
-	/*
-	 * Configuration de l'application
-	 */
-	$config = [
-		// Nombre de titre d'épisodes à afficher en une seule fois
-		'episodeLimit' => 5,
-		// Profondeur max des commentaires
-		'maxDepth' => 3,
-		// Serveur SMTP pour envoyer les mails
-		'SMTPServer' => 'smtp.gmail.com',
-		// Login du serveur SMTP
-		'SMTPUsername' => 'me@gmail.com',
-		// Mot de passe pour le serveur SMTP
-		'SMTPPassword' => 'VerySuperSecret',
-		// Adresse email pour recevoir les notifications de signalement d'abus
-		'email' => 'j.forteroche@gmail.com'
-	];
+	/**
+         * Configuration de l'application
+         *
+         * PHP Version 5.6
+         *
+         * @category App
+         * @package  App\Config
+         * @author   Pierre-Sylvain Augereau <ps.augereau@gmail.com>
+         * @license  http://www.opensource.org/licenses/mit-license.html  MIT License
+         * @link     https://blogjs.lignedemire.eu
+         */
+         $config = [
+            // Nombre de titre d'épisodes à afficher en une seule fois
+            'episodeLimit' => 5,
+            // Profondeur max des commentaires
+            'maxDepth' => 3,
+            // Serveur SMTP pour envoyer les mails
+            'SMTPServer' => 'smtp.gmail.com',
+            // Login du serveur SMTP
+            'SMTPUsername' => 'me@gmail.com',
+            // Mot de passe pour le serveur SMTP
+            'SMTPPassword' => 'VerySuperSecret',
+            // Adresse email pour recevoir les notifications de signalement d'abus
+            'email' => 'j.forteroche@gmail.com'
+         ];
 
 ### database.php
-	<?php
-
-	/*
-	 * Accès à la base de données
-	 */
-	$database = [
-			// URL du serveur Mysql
-			'host' => '127.0.0.1',
-			// Login
-			'login' => 'user',
-			// Mot de passe
-			'password' => 'usersecretpassword',
-			// Nom de la base de données
-			'database' => 'blog',
-			// Port à utiliser
-			'port' => 3306
-	];
+    <?php
+    /**
+     * Accès à la base de données
+     *
+     * PHP Version 5.6
+     *
+     * @category App
+     * @package  App\Config
+     * @author   Pierre-Sylvain Augereau <ps.augereau@gmail.com>
+     * @license  http://www.opensource.org/licenses/mit-license.html  MIT License
+     * @link     https://blogjs.lignedemire.eu
+     */
+     $database = [
+		'host' 		=> '127.0.0.1',
+		'login' 	=> 'user',
+		'password' 	=> 'usersecretpassword',
+		'database' 	=> 'blog',
+		'port'		=> 3306
+     ];
 
 Le champ **port** est optionnel. Si vous utilisez ce champ, il est nécessaire de mettre une adresse IP dans le champ **host**, sinon le port ne sera pris en compte. (voir http://stackoverflow.com/questions/21046672/pdo-not-working-with-port)
 
