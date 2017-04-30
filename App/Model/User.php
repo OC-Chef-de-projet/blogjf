@@ -1,20 +1,27 @@
 <?php
+/**
+ * Modèle user
+ *
+ * PHP Version 5.6
+ *
+ * @category App
+ * @package  App\Model
+ * @author   Pierre-Sylvain Augereau <ps.augereau@gmail.com>
+ * @license  http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link     https://blogjs.lignedemire.eu
+ */
 namespace App\Model;
+use \Core\Model;
 
 /**
-	CREATE TABLE IF NOT EXISTS `user` (
-		`id` int(10) unsigned NOT NULL,
-		`login` varchar(50) DEFAULT NULL,
-		`password` varchar(255) DEFAULT NULL,
-		`role` int(1) DEFAULT NULL,
-		`created` datetime DEFAULT NULL,
-		`modified` datetime DEFAULT NULL
-	) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
-*/
-
-class User extends \Core\Model
+ * Définition de la table user
+ *
+ * @category App
+ * @package  App\Model
+ * @author   Pierre-Sylvain Augereau <ps.augereau@gmail.com>
+ * @license  http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link     https://blogjs.lignedemire.eu
+ */
+class User extends Model
 {
-
-
 }
