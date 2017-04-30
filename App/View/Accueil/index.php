@@ -138,11 +138,7 @@ $("#nextEpisode").click(function() {
 
 function scrollEpisode(direction) {
     $.ajax({
-<<<<<<< HEAD
-        url: '/devblog/episode/getEpisodesTitle',
-=======
         url: '/episode/getEpisodesTitle',
->>>>>>> domain
         type: 'POST',
         data: {
             ajax: true,
@@ -178,13 +174,8 @@ function updateScrollEpisode(data) {
 
     var html = "";
     for (var i = 0; i < data.episodes.length; i++) {
-<<<<<<< HEAD
         html += "<h2 class='text-left'>";
         html += "<a href=\"/blogjf/Episode/view/" + data.episodes[i].id + "\">";
-=======
-        html += "<h2 class='navChap'>";
-        html += "<a href=\"/Episode/view/" + data.episodes[i].id + "\">";
->>>>>>> domain
         html += data.episodes[i].title;
         html + "</a>";
         html += "</h2>";
