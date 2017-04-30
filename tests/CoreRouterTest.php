@@ -23,7 +23,7 @@ class CoreRouterTest extends TestCase
 		//$Method->setAccessible(true);
 
 		$Method->invoke($router, $expected);
-		$Property = $Class->getProperty('url');
+		$Property = $Class->getProperty('_url');
 		$Property->setAccessible(true);
 		$this->assertSame($expected, $Property->getValue($router));
 	}
@@ -45,7 +45,7 @@ class CoreRouterTest extends TestCase
 		$Method = $Class->getMethod('get');
 
 		$Method->invoke($router, '/',['controller' => 'Accueil', 'action' => 'index']);
-		$Property = $Class->getProperty('routes');
+		$Property = $Class->getProperty('_routes');
 		$Property->setAccessible(true);
 
 		// Test si le tableau des routes à bien une clé GET
@@ -67,7 +67,7 @@ class CoreRouterTest extends TestCase
 		$Method = $Class->getMethod('post');
 
 		$Method->invoke($router, '/',['controller' => 'Accueil', 'action' => 'index']);
-		$Property = $Class->getProperty('routes');
+		$Property = $Class->getProperty('_routes');
 		$Property->setAccessible(true);
 
 		// Test si le tableau des routes à bien une clé POSt

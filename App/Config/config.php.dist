@@ -1,7 +1,14 @@
 <?php
-
-/*
+/**
  * Configuration de l'application
+ *
+ * PHP Version 5.6
+ *
+ * @category App
+ * @package  App\Config
+ * @author   Pierre-Sylvain Augereau <ps.augereau@gmail.com>
+ * @license  http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link     https://blogjs.lignedemire.eu
  */
 $config = [
 	// Nombre de titre d'épisodes à afficher en une seule fois

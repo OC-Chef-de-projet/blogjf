@@ -1,23 +1,27 @@
 <?php
+/**
+ * Modèle Commentaires
+ *
+ * PHP Version 5.6
+ *
+ * @category App
+ * @package  App\Model
+ * @author   Pierre-Sylvain Augereau <ps.augereau@gmail.com>
+ * @license  http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link     https://blogjs.lignedemire.eu
+ */
 namespace App\Model;
+use \Core\Model;
 
 /**
-  	CREATE TABLE IF NOT EXISTS `comment` (
-		`id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-		`episode_id` int(11) NOT NULL,
-  		`parent_id` int(11) NOT NULL DEFAULT '0',
-  		`depth` int(11) NOT NULL DEFAULT '0',
-  		`content` text NOT NULL,
-  		`author` varchar(64) NOT NULL,
-  		`email` text NOT NULL,
-  		`abuse` tinyint(1) NOT NULL DEFAULT '0',
-  		`created` date DEFAULT NULL,
-  		`modified` date DEFAULT NULL
-	);
-*/
-
-class Comment extends \Core\Model
+ * Définition de la table Comment
+ *
+ * @category App
+ * @package  App\Model
+ * @author   Pierre-Sylvain Augereau <ps.augereau@gmail.com>
+ * @license  http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link     https://blogjs.lignedemire.eu
+ */
+class Comment extends Model
 {
-
-
 }

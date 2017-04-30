@@ -1,27 +1,45 @@
 <?php
+/**
+ * Episodes métier
+ *
+ * PHP Version 5.6
+ *
+ * @category App
+ * @package  App\Lib
+ * @author   Pierre-Sylvain Augereau <ps.augereau@gmail.com>
+ * @license  http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link     https://blogjs.lignedemire.eu
+ */
 namespace App\Lib;
-
-use \App\Controller;
+use \App\Model\Episode as _Episode;
 
 /**
- * Méthodes métier pour les épisodes
+ * Classe métier pour les épisodes
+ *
+ * @category App
+ * @package  App\Lib
+ * @author   Pierre-Sylvain Augereau <ps.augereau@gmail.com>
+ * @license  http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link     https://blogjs.lignedemire.eu
  */
 class Episode
 {
 
-    private $model = null;
+    /** @var class Modèle du métier */
+    private $_model = null;
 
     /**
      * __construct
      */
     public function __construct()
     {
-        $this->model = new \App\Model\Episode();
+        $this->_model = new _Episode();
     }
 
     /**
      * Tous les episodes dans l'ordre
      * inverse d'enregsitrement.
+     *
      * @return [type] [description]
     */
     public function getAll()
@@ -31,12 +49,14 @@ class Episode
                 'id' => 'desc'
             ]
         ];
-        return $this->model->find($options);
+        return $this->_model->find($options);
     }
 
     /**
      * Retourne un épisode
-     * @param  integer $id
+     *
+     * @param integer $id N° de l'épisode
+     *
      * @return object
     */
     public function getById($id = 0)
@@ -47,18 +67,16 @@ class Episode
                 'id' => $id
             ]
         ];
-        return $this->model->find($options);
+        return $this->_model->find($options);
     }
 
     /**
      * Identifiant et titres des episode par groupe
      * de X episodes
      *
-     * @param  integer $offset    [description]
-     * @param  string  $direction [description]
-     * @return [type]             [description]
+     * @return string liste des titres
      */
-    public function getListOfTitles($offset = 0, $direction = '')
+    public function getListOfTitles()
     {
 
         $response = array();
@@ -73,15 +91,15 @@ class Episode
             }
             if (isset($_POST['direction']) && !empty($_POST['direction'])) {
                 switch ($_POST['direction']) {
-                    case \App\Controller\EpisodeController::PREV:
-                        $offset = $offset + $limit;
-                        break;
-                    case \App\Controller\EpisodeController::NEXT:
-                        $offset = $offset - $limit;
-                        break;
-                    default:
-                        $offset = 0;
-                        break;
+                case \App\Controller\EpisodeController::PREV:
+                    $offset = $offset + $limit;
+                    break;
+                case \App\Controller\EpisodeController::NEXT:
+                    $offset = $offset - $limit;
+                    break;
+                default:
+                    $offset = 0;
+                    break;
                 }
             }
         }
@@ -102,7 +120,7 @@ class Episode
         ];
 
 
-        $episodes = $this->model->find($options);
+        $episodes = $this->_model->find($options);
 
         // Traitement du cas ou le nombre d'enregistrements retournés est inférieur
         // au nombre d'enregistrement à afficher. Dans ce cas on décale l'offset pour
@@ -122,7 +140,7 @@ class Episode
                     'title'
                 ]
             ];
-            $episodes = $this->model->find($options);
+            $episodes = $this->_model->find($options);
         }
 
         $response['offset'] = $offset;
@@ -136,7 +154,7 @@ class Episode
 
         // Détermine si l'on est sur le premier groupe
         // d'enregistrements
-        $count = $this->model->count();
+        $count = $this->_model->count();
         $calc = $count - $offset;
         if ($calc <= $limit) {
             $response['isFirst'] = 1;
@@ -157,7 +175,9 @@ class Episode
 
     /**
      * Retourne le titre d'un épisode
-     * @param  int $episode
+     *
+     * @param int $id N° de l'épisode
+     *
      * @return object
      */
     public function getTitle($id)
@@ -170,19 +190,19 @@ class Episode
                 'title'
             ]
         ];
-        switch ($id) {
-            case \App\Controller\EpisodeController::FIRST:
-                $options['order'] = [ 'id' => 'asc'];
-                break;
-            case \App\Controller\EpisodeController::LAST:
-                $options['order'] = [ 'id' => 'desc'];
-                break;
-            default:
-                $options['conditions'] = [ 'id' => $id];
-                break;
+        switch ($id){
+        case \App\Controller\EpisodeController::FIRST:
+            $options['order'] = [ 'id' => 'asc'];
+            break;
+        case \App\Controller\EpisodeController::LAST:
+            $options['order'] = [ 'id' => 'desc'];
+            break;
+        default:
+            $options['conditions'] = [ 'id' => $id];
+            break;
         }
 
-        $episode = $this->model->find($options);
+        $episode = $this->_model->find($options);
         if ($episode) {
             $episode->url = \Core\Html::rewrite($episode->title);
         }
@@ -192,7 +212,9 @@ class Episode
     /**
      * Résumé d'un épisode
      * Si aucun épisode n'est précisé, le dernier est retourné
-     * @param  integer $episode N° de l'épisode (episode.id)
+     *
+     * @param integer $episode N° de l'épisode (episode.id)
+     *
      * @return object
      */
     public function getSummary($episode = 0)
@@ -207,18 +229,18 @@ class Episode
             $episode = \App\Controller\EpisodeController::LAST;
         }
         switch ($episode) {
-            case \App\Controller\EpisodeController::FIRST:
-                $options['order'] = [ 'id' => 'asc'];
-                break;
-            case \App\Controller\EpisodeController::LAST:
-                $options['order'] = [ 'id' => 'desc'];
-                break;
-            default:
-                $options['conditions'] = [ 'id' => $episode];
-                break;
+        case \App\Controller\EpisodeController::FIRST:
+            $options['order'] = [ 'id' => 'asc'];
+            break;
+        case \App\Controller\EpisodeController::LAST:
+            $options['order'] = [ 'id' => 'desc'];
+            break;
+        default:
+            $options['conditions'] = [ 'id' => $episode];
+            break;
         }
 
-        $episode = $this->model->find($options);
+        $episode = $this->_model->find($options);
         if ($episode) {
             $episode->url = \Core\Html::rewrite($episode->title);
         }
@@ -228,7 +250,9 @@ class Episode
     /**
      * Retourne le numéroi et le titre de l'épisode
      * précédent et le n° et le titre de l'épisode suivant
-     * @param  integer $id
+     *
+     * @param integer $id N° de l'épisode
+     *
      * @return array
      */
     public function getPrevAndNextTitle($id = 0)
@@ -257,7 +281,7 @@ class Episode
         }
 
 
-        $prev_episode = $this->model->find($options);
+        $prev_episode = $this->_model->find($options);
 
         if ($prev_episode) {
             $prev_episode->url = \Core\Html::rewrite($prev_episode->title);
@@ -276,7 +300,7 @@ class Episode
                 'title'
             ]
         ];
-        $next_episode = $this->model->find($options);
+        $next_episode = $this->_model->find($options);
         if ($next_episode) {
             $next_episode->url = \Core\Html::rewrite($next_episode->title);
         }
