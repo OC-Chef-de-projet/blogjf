@@ -99,7 +99,7 @@ abstract class Controller extends View
      */
     public function restricted()
     {
-        if ($this->container['auth']->isConnected() === false) {
+        if (!$this->container['auth']->isConnected()) {
             header("Location: /Login");
         }
     }
