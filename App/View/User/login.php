@@ -1,7 +1,7 @@
 <section class="presentation" id="presentation">
 	<div class="container-fuild">
 
-		 <?php $this->Form()->create('Login'); ?>
+		 <?= $this->Form()->create('Login'); ?>
 			<div class="row vertical-center">
 				<div class="col-sm-4"></div>
 				<div class="col-sm-4">

@@ -81,7 +81,6 @@ class Auth
     public function isConnected()
     {
         return Session::getInstance()->read('isConnected');
-
     }
 }
 
