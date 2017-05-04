@@ -13,8 +13,8 @@
 
 if (!isset($argv[1]) |- empty($argv[1])) {
     echo 'Usage: php -f '.$argv[0].' mot_de_passe'."\n";
-    exit;
+} else {
+	$password = $argv[1];
+	$new_password = password_hash($password, PASSWORD_DEFAULT, [ 'cost' => 12]);
+	echo "UPDATE user SET password = '$new_password' WHERE id = 1";
 }
-$password = $argv[1];
-$new_password = password_hash($password, PASSWORD_DEFAULT, [ 'cost' => 12]);
-echo "UPDATE user SET password = '$new_password' WHERE id = 1";
