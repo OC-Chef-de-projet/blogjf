@@ -14,12 +14,41 @@ Ce projet est un début de framework MVC dans le cadre de ma formation "Chef de 
     + **www** - Fichiers et répertoires web
 + **tests** - Tests unitaires
 
-## Configuration
+## Installation
+Il est préférable de créer un utilisateur pour accéder à cette base de données plutot que d'utiliser l'utilisateur **root**. Dans la procédure suivante le nom de l'utilisateur est **user**.
+
++ Cloner ou téléchargez le projet.
+```
+$ git clone https://github.com/PierreSylvain/blogjf.git
+```
+
++ Positionnez vous dans le répertoire de l'application, qui est par défaut **blogjs**
+```
+$ cd blogjf
+```
+
++ Le script **install/schema.sql** permet de créér la base de données et les tables nécessaires.
+```
+$ mysql -uuser -p blog < install/schema.sql
+```
++ Le script **install/data.sql** permet de charger la base de données avec des données fictives.
+```
+$ mysql -uuser -p blog < install/data.sql
+```
+
++ Par défaut un administrateur est créé avec comme login **admin** mais sans mot de passe (il n'est pas possible de se connecter un login sans mot de passe)
+
++ Pour créer un mot de passe de l'administrateur
+```
+$ php -f install/setpasswd.php admin | mysql -uuser blog -p
+```
++ En fin d'installation il est recommandé d'effacer le répertoire **install**.
+ 
+### Configuration
 Dans le répertoire **App/Config** il y a deux fichiers de configuration **config.php.dist** et **database.php.dist** qui sont les modèles pour la configuration  de l'application.
 Lors d'une première installation copier ces fichiers en **config.php** et **database.php**
 
-
-### config.php
+#### config.php
 	<?php
 	/**
          * Configuration de l'application
@@ -47,7 +76,7 @@ Lors d'une première installation copier ces fichiers en **config.php** et **dat
             'email' => 'j.forteroche@gmail.com'
          ];
 
-### database.php
+#### database.php
     <?php
     /**
      * Accès à la base de données
@@ -69,8 +98,6 @@ Lors d'une première installation copier ces fichiers en **config.php** et **dat
      ];
 
 Le champ **port** est optionnel. Si vous utilisez ce champ, il est nécessaire de mettre une adresse IP dans le champ **host**, sinon le port ne sera pris en compte. (voir http://stackoverflow.com/questions/21046672/pdo-not-working-with-port)
-
-
 
 
 

@@ -15,7 +15,7 @@ if($focus == $comment->id){
     <div class="<?= $col.' '.$off ?> comment-box" id="cmt-<?= $comment->id ?>">
         <div class="row comment-head">
             <div class="col-xs-6 comment-name">
-                <?= $comment->author ?>
+                <?= htmlspecialchars($comment->author) ?>
             </div>
             <div class="col-xs-4 comment-date">
                 <?= $comment->created ?>
@@ -34,7 +34,7 @@ if($focus == $comment->id){
             </div>
         </div>
         <div class="comment-text <?= $abuse.' '.$highlight ?>">
-            <?= $comment->content ?>
+            <?= htmlspecialchars($comment->content) ?>
         </div>
     </div>
     <?php if(isset($comment->children)): ?>
