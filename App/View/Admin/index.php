@@ -25,10 +25,10 @@ h2 {
                         </a>
                     </td>
                     <td>
-                        <?= $abuse->author.' &lt;'.$abuse->email.'&gt;' ?>
+                        <?= htmlspecialchars($abuse->author).' &lt;'.htmlspecialchars($abuse->email).'&gt;' ?>
                     </td>
                     <td>
-                        <?= $abuse->content ?>
+                        <?= htmlspecialchars($abuse->content) ?>
                     </td>
                     <td>
                         <?= $abuse->created ?>
@@ -67,10 +67,10 @@ h2 {
                         </a>
                     </td>
                     <td>
-                        <?= $comment->author.' &lt;'.$comment->email.'&gt;' ?>
+                        <?= htmlspecialchars($comment->author).' &lt;'.htmlspecialchars($comment->email).'&gt;' ?>
                     </td>
                     <td>
-                        <?= $comment->content ?>
+                        <?= htmlspecialchars($comment->content) ?>
                     </td>
                     <td>
                         <?= $comment->created ?>
