@@ -7,4 +7,4 @@ define('WEBROOT_DIR', 'www');
 define('WWW_ROOT', ROOT . DS . APP_DIR . DS . WEBROOT_DIR . DS);
 
 
-require_once(WWW_ROOT.'index.php');
+require_once(WWW_ROOT.'index.php');*
